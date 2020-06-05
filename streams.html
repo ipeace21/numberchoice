@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>번호 추첨</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <h1 style = "text-align:center; color:blue;">스트림스 번호 추첨</h1>
+      <div style = "text-align:right; font-size:15px;"><a href="index.html">Go to Home</a></div>
+
+    <input type="button" value="  추첨 번호 발생하기  " onclick="makenum()"
+                         style = "text-align:center; font-size:40px;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br><br>
+    <input type="text" id="cnumber" name="cnumber" value = "추첨된 번호"
+                         style = "text-align:center; font-size:200px; width:100%;
+                         border-width: 5px;"><br><br>
+    <input type="text" id="cnums" name="cnums" value = "여기에는 추첨된 번호들이 차례로 표시됩니다."
+                         style = "font-size:25px; width:100%;
+                         border-radius: 8px; border-width: 3px;"><br><br><br>
+    <input type="button" value="    번호 추첨    " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** '추첨 번호 발생하기' 버튼을 클릭한 후에, '번호 추첨' 버튼을 한 번씩 클릭하면서 진행하세요.<br>
+      ** 100은 조커 번호입니다.
+    </div>
+
+    <script>
+
+      var allnum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 100];
+      var chosennum = [];
+      var chosennumbers = [];
+      var howmany = 0;
+      var cnum = "";
+
+      function makenum(){
+          chosennum = [];
+          chosennumbers = [];
+          howmany = 0;
+          cnum = "추첨된 번호들 : ";
+          document.getElementById("cnumber").value = "";
+          document.getElementById("cnums").value = "";
+
+          var randomnum;
+            var i = 0;
+            while(i < 20) {
+
+              var rand = Math.random();
+              randomnum = Math.floor(rand * 40);
+
+
+              var j = 0;
+              var k = 0;
+              for(j = 0; j < i; j++){
+                if (chosennum[j] === randomnum){
+                  k = k + 1;
+                }
+              }
+              if (k === 0){
+                chosennum[i] = randomnum;
+                chosennumbers[i] = allnum[randomnum];
+                i = i + 1;
+              }
+
+            }
+        }
+
+        function choosenum(){
+          if(howmany < 20){
+
+            document.getElementById("cnumber").value = (howmany+1) + " : " + chosennumbers[howmany];
+            if(howmany<19){
+              cnum = cnum + chosennumbers[howmany] + ",  ";
+            } else {
+              cnum = cnum + chosennumbers[howmany]
+            }
+            document.getElementById("cnums").value = cnum;
+            howmany = howmany + 1;
+
+          }
+
+        }
+
+
+    </script>
+
+  </body>
+</html>
