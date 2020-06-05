@@ -1,0 +1,173 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>번호 추첨</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <h1 style = "text-align:center; color:blue;">주사위 던지기 비율 테스트</h1>
+      <div style = "text-align:right; font-size:15px;"><a href="index.html">Go to Home</a></div>
+
+    <span style="font-size:40px;">던질 횟수 </span>
+    <input type="text" id="chow" name="chow" value="100"
+                         style = "text-align:center; font-size:40px; width:300px;
+                         border-width: 5px;"><br><br>
+    <input type="text" id="cnumber1" name="cnumber1" value = "[1]"
+                         style = "text-align:left; font-size:30px; width:100%;
+                         border-width: 2px;"><br><br>
+    <input type="text" id="cnumber2" name="cnumber2" value = "[2]"
+                         style = "text-align:left; font-size:30px; width:100%;
+                         border-width: 2px;"><br><br>
+    <input type="text" id="cnumber3" name="cnumber3" value = "[3]"
+                         style = "text-align:left; font-size:30px; width:100%;
+                         border-width: 2px;"><br><br>
+    <input type="text" id="cnumber4" name="cnumber4" value = "[4]"
+                         style = "text-align:left; font-size:30px; width:100%;
+                         border-width: 2px;"><br><br>
+    <input type="text" id="cnumber5" name="cnumber5" value = "[5]"
+                         style = "text-align:left; font-size:30px; width:100%;
+                         border-width: 2px;"><br><br>
+    <input type="text" id="cnumber6" name="cnumber6" value = "[6]"
+                         style = "text-align:left; font-size:30px; width:100%;
+                         border-width: 2px;"><br><br>
+    <input type="text" id="cnums" name="cnums" value = " 여기에는 나온 숫자들의 횟수가 표시됩니다."
+                         style = "font-size:22px; width:100%; color:blue;
+                         border-radius: 8px; border-width: 3px;"><br><br>
+    <input type="button" value="   주사위 던지기   " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** 던질 횟수를 입력하고 '주사위 던지기' 버튼을 클릭하세요.<br>
+      ** 주사위를 10,000,000번 던지는 테스트에 3초 정도 걸립니다.
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var dicenum = [0, 0, 0, 0, 0, 0];
+      var howmany = 100;
+      document.getElementById("chow").value = howmany;
+      document.getElementById("cnumber1").value = "[1]";
+      document.getElementById("cnumber2").value = "[2]";
+      document.getElementById("cnumber3").value = "[3]";
+      document.getElementById("cnumber4").value = "[4]";
+      document.getElementById("cnumber5").value = "[5]";
+      document.getElementById("cnumber6").value = "[6]";
+      var cnum = " 나온 숫자들 ";
+      document.getElementById("cnums").value = cnum;
+
+
+
+      function choosenum(){
+
+        dicenum = [0, 0, 0, 0, 0, 0];
+        howmany = document.getElementById("chow").value;
+        var i = 0;
+
+        document.getElementById("cnumber1").value = ".....";
+        document.getElementById("cnumber2").value = ".....";
+        document.getElementById("cnumber3").value = ".....";
+        document.getElementById("cnumber4").value = ".....";
+        document.getElementById("cnumber5").value = ".....";
+        document.getElementById("cnumber6").value = ".....";
+        cnum = ".....";
+        document.getElementById("cnums").value = cnum;
+
+
+        while (i < howmany){
+          var howlong;
+          var randomnum;
+          var rand = Math.random();
+          randomnum = Math.floor(rand * 6) + 1;
+
+          if (randomnum == 1) {
+            dicenum[0] ++;
+          }
+          if (randomnum == 2) {
+            dicenum[1] ++;
+          }
+          if (randomnum == 3) {
+            dicenum[2] ++;
+          }
+          if (randomnum == 4) {
+            dicenum[3] ++;
+          }
+          if (randomnum == 5) {
+            dicenum[4] ++;
+          }
+          if (randomnum == 6) {
+            dicenum[5] ++;
+          }
+
+          i++;
+
+        }
+
+
+        var dice1 = dicenum[0]/howmany * 250;
+        howlong = "";
+        for (i=0;i<dice1;i++){
+          howlong = howlong + "#";
+        }
+        document.getElementById("cnumber1").value = "[1] " + howlong;
+
+        var dice2 = dicenum[1]/howmany * 250;
+        howlong = "";
+        for (i=0;i<dice2;i++){
+          howlong = howlong + "#";
+        }
+        document.getElementById("cnumber2").value = "[2] " + howlong;
+
+        var dice3 = dicenum[2]/howmany * 250;
+        howlong = "";
+        for (i=0;i<dice3;i++){
+          howlong = howlong + "#";
+        }
+        document.getElementById("cnumber3").value = "[3] " + howlong;
+
+        var dice4 = dicenum[3]/howmany * 250;
+        howlong = "";
+        for (i=0;i<dice4;i++){
+          howlong = howlong + "#";
+        }
+        document.getElementById("cnumber4").value = "[4] " + howlong;
+
+        var dice5 = dicenum[4]/howmany * 250;
+        howlong = "";
+        for (i=0;i<dice5;i++){
+          howlong = howlong + "#";
+        }
+        document.getElementById("cnumber5").value = "[5] " + howlong;
+
+        var dice6 = dicenum[5]/howmany * 250;
+        howlong = "";
+        for (i=0;i<dice6;i++){
+          howlong = howlong + "#";
+        }
+        document.getElementById("cnumber6").value = "[6] " + howlong;
+
+        cnum = " 나온 숫자들 ";
+        cnum = cnum + "[1] : " + dicenum[0] + "회   ";
+        cnum = cnum + "[2] : " + dicenum[1] + "회   ";
+        cnum = cnum + "[3] : " + dicenum[2] + "회   ";
+        cnum = cnum + "[4] : " + dicenum[3] + "회   ";
+        cnum = cnum + "[5] : " + dicenum[4] + "회   ";
+        cnum = cnum + "[6] : " + dicenum[5] + "회   ";
+        document.getElementById("cnums").value = cnum;
+
+      }
+
+
+    </script>
+
+  </body>
+</html>
