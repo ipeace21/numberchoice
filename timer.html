@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>번호 추첨</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>(번호 추첨) 타이머</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+    <input type="text" id="tonumber" name="tonumber" value="5"
+                         style = "text-align:center; font-size: 40px;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         width: 80;">
+    <span style = "font-size: 40px;">분 </span>
+    <input type="button" value="  타이머 준비  " onclick="timerready()"
+                         style = "text-align:center; font-size:40px;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;">
+    <span style = "font-size: 40px;">....</span>
+    <input type="button" value="  타이머 중지  " onclick="timerstop()"
+                         style = "text-align:center; font-size:40px;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    <input type="text" id="cnumber" name="cnumber" value = "남은 시간"
+                         style = "text-align:center; font-size:200px; width:100%;
+                         border-width: 5px;"><br><br>
+    <input type="button" value="    타이머 시작    " onclick="timerstart()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** 타이머 시간을 입력하고 '타이머 준비' 버튼을 클릭한 후, '타이머 시작' 버튼을 클릭하세요.<br>
+      ** [주의] '타이머 시작' 버튼을 계속해서 클릭하지 마세요.<br>
+      ** 타이머가 정상적으로 작동하지 않을 때는 'F5' 키를 눌러서 프로그램을 새로 시작하세요.<br>
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+
+    <script>
+
+      var howlong = 5;
+      var myVar;
+      var mm = 4;
+      var ss = 60;
+
+      function myTimer() {
+
+        ss = ss - 1;
+
+        if (mm == 0 && ss == 0){
+          clearInterval(myVar);
+          document.getElementById("cnumber").value = "Time Out";
+          return;
+        }
+
+        if (ss == -1) {
+          mm =  mm - 1;
+          ss = 59;
+        }
+
+        if (ss < 10) {
+          document.getElementById("cnumber").value = mm + " : 0" + ss;
+        } else {
+          document.getElementById("cnumber").value = mm + " : " + ss;
+        }
+      }
+
+
+      function timerready(){
+          howlong = document.getElementById("tonumber").value;
+          mm = howlong - 1;
+          ss = 60;
+          document.getElementById("cnumber").value = howlong + " : 00";
+      }
+
+
+      function timerstop(){
+          clearInterval(myVar);
+      }
+
+
+      function timerstart(){
+          myVar = setInterval(myTimer, 1000);
+      }
+
+
+    </script>
+
+  </body>
+</html>
