@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>번호 추첨</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>(번호 추첨) 윷놀이</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+
+    <span style="font-size:40px;">실시 횟수 </span>
+    <input type="text" id="chow" name="chow" value="횟수"
+                         style = "text-align:center; font-size:40px; width:200px;
+                         border-width: 5px;">
+    <span style="margin-left:50px;">     </span>
+    <input type="button" value="실시 횟수 초기화" onclick="initNum()"
+                         style = "text-align:center; font-size:40px; color:black;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+
+
+    <table style="margin:0; padding:0;"><tr>
+      <td style="text-align:center; width:65%;">
+      <input type="text" id="cnumber" name="cnumber" value = "준비"
+                         style = "text-align:center; font-size:240px; width:90%;
+                         border-width: 5px;">
+      </td>
+      <td style="text-align:center; width:35%;">
+      <img src="Yut_O.jpg" alt="윷가락O"
+           id="rockimg1" name="rockimg1" style="vertical-align: middle; width:60px;">
+      <img src="Yut_X.jpg" alt="윷가락X"
+           id="rockimg2" name="rockimg2" style="vertical-align: middle; width:60px;">
+      <img src="Yut_O.jpg" alt="윷가락O"
+           id="rockimg3" name="rockimg3" style="vertical-align: middle; width:60px;">
+      <img src="Yut_X.jpg" alt="윷가락X"
+           id="rockimg4" name="rockimg4" style="vertical-align: middle; width:60px;">
+      </td>
+    </tr></table><br>
+    <input type="text" id="cnums" name="cnums" value = "여기에 나온 차례대로 표시됩니다."
+                         style = "font-size:25px; width:100%;
+                         border-radius: 8px; border-width: 3px;"><br><br>
+    <input type="button" value="   윷가락 던지기   " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** '윷가락 던지기' 버튼을 한 번씩 클릭하면서 진행하세요.
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var howmany = 0;
+      var cnum = "나온 차례 : ";
+      document.getElementById("chow").value = howmany;
+      document.getElementById("cnumber").value = "준비";
+      document.getElementById("cnums").value = cnum;
+      document.getElementById("rockimg1").src = "Yut_O.jpg";
+      document.getElementById("rockimg2").src = "Yut_X.jpg";
+      document.getElementById("rockimg3").src = "Yut_O.jpg";
+      document.getElementById("rockimg4").src = "Yut_X.jpg";
+
+
+      function initNum(){
+        howmany = 0;
+        document.getElementById("chow").value = howmany;
+        document.getElementById("cnumber").value = "준비";
+        cnum = "나온 차례 : ";
+        document.getElementById("cnums").value = cnum;
+        document.getElementById("rockimg1").src = "Yut_O.jpg";
+        document.getElementById("rockimg2").src = "Yut_X.jpg";
+        document.getElementById("rockimg3").src = "Yut_O.jpg";
+        document.getElementById("rockimg4").src = "Yut_X.jpg";
+      }
+
+
+      function choosenum(){
+
+        var randomnum;
+        var rand = Math.random();
+        randomnum = Math.floor(rand * 5);
+
+        howmany++;
+        document.getElementById("chow").value = howmany;
+
+        if (randomnum == 0){
+          document.getElementById("cnumber").value = "도";
+          document.getElementById("rockimg1").src = "Yut_X.jpg";
+          document.getElementById("rockimg2").src = "Yut_O.jpg";
+          document.getElementById("rockimg3").src = "Yut_O.jpg";
+          document.getElementById("rockimg4").src = "Yut_O.jpg";
+          cnum = cnum + "도" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+
+        if (randomnum == 1){
+          document.getElementById("cnumber").value = "개";
+          document.getElementById("rockimg1").src = "Yut_X.jpg";
+          document.getElementById("rockimg2").src = "Yut_X.jpg";
+          document.getElementById("rockimg3").src = "Yut_O.jpg";
+          document.getElementById("rockimg4").src = "Yut_O.jpg";
+          cnum = cnum + "개" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+
+        if (randomnum == 2){
+          document.getElementById("cnumber").value = "걸";
+          document.getElementById("rockimg1").src = "Yut_X.jpg";
+          document.getElementById("rockimg2").src = "Yut_X.jpg";
+          document.getElementById("rockimg3").src = "Yut_X.jpg";
+          document.getElementById("rockimg4").src = "Yut_O.jpg";
+          cnum = cnum + "걸" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+
+        if (randomnum == 3){
+          document.getElementById("cnumber").value = "윷";
+          document.getElementById("rockimg1").src = "Yut_X.jpg";
+          document.getElementById("rockimg2").src = "Yut_X.jpg";
+          document.getElementById("rockimg3").src = "Yut_X.jpg";
+          document.getElementById("rockimg4").src = "Yut_X.jpg";
+          cnum = cnum + "윷" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+
+        if (randomnum == 4){
+          document.getElementById("cnumber").value = "모";
+          document.getElementById("rockimg1").src = "Yut_O.jpg";
+          document.getElementById("rockimg2").src = "Yut_O.jpg";
+          document.getElementById("rockimg3").src = "Yut_O.jpg";
+          document.getElementById("rockimg4").src = "Yut_O.jpg";
+          cnum = cnum + "모" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+
+
+      }
+
+
+    </script>
+
+  </body>
+</html>
