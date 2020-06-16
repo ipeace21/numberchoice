@@ -1,0 +1,129 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        body{
+            width: 100%;
+            margin-left: 20px;
+            }
+        .cl_textarea{
+            font-size : 50px;
+            border: 1px solid #737373;
+            border-radius: 0px;
+            background-color: rgb(240, 255, 255);
+            width:95%; height:400px;
+            text-indent: 50px;
+            line-height: 1.4;
+            padding:15px;
+            color:black;
+            outline:none;
+            margin-top:10px;
+            box-shadow: 0px 0px 10px 3px #737373;
+            }
+        .cl_button{
+            font-size:30px;
+            border-radius: 10px; outline:none;
+            padding-left:30px; padding-right:30px; padding-top:10px; padding-bottom:10px;
+            cursor:pointer;
+            }
+        .cl_button:hover{
+            background-color:#CEF6F5;
+            }
+    </style>
+
+    <title>좋은 소식</title>
+</head>
+
+<body>
+    <div>
+        <h1><< 인생에 대한 참된 이해를 주는 좋은 소식 >></h1>
+    </div>
+    <br>
+
+    <div style="font-size : 25px; text-align : right; padding-right:50px;">
+         <a href="https://ipeace21.github.io/numberchoice/index.html">Go to Home</a>
+    </div>
+    <br>
+
+    <div>
+        <textarea id="goodnews" name="goodnews"
+                    value= "{{ contents }}"
+                    class="cl_textarea"></textarea><br><br>
+        <span>
+            <button type="submit" class="cl_button"
+                       onclick="goto_Before()">이전으로</button>
+            <span>.... </span>
+            <input type="text" id="pn" name="pn"
+                   value="{{ page_no }}"
+                   style="width:50px; border:none; font-size:25px; text-align:center;">
+            <span> ....</span>
+            <button type="submit" class="cl_button"
+                       onclick="goto_Next()">다음으로</button>
+        </span>
+    </div>
+
+    <br><br>
+    <span style="font-size : 15px;">made by ipeace21</span>
+
+
+    <script>
+    var p=0;
+    var gn = [
+        "인생은?",
+        "사람이 살아가는 것입니다.",
+        "사람은 무엇입니까?",
+        "사람은 하나님이 만드신 특별한 피조물입니다. 그래서 사람은 하나님의 말씀을 따라 세상에서 행복하게 살아가며 하나님의 위대하심을 드러낼 수 있었습니다.",
+        "그런데 왜 사람에게는 행복하지 못한 순간들이 있습니까? 왜 사람이 살아가는 가운데 계속해서 문제들이 일어납니까?",
+        "사람이 창조주이신 하나님의 말씀을 어기고 하나님께 불순종하는 죄를 지었기 때문에, 사람은 행복을 잃고 수많은 문제들을 겪습니다.",
+        "그리고 죄의 문제를 해결하지 못한 사람은 결국 영원한 멸망의 심판을 받게 됩니다.",
+        "어떻게 하면 영원한 멸망의 심판으로부터 벗어날 수 있습니까?",
+        "창조주 하나님을 믿고 하나님께서 보내신 구원자를 받아들이면 됩니다.",
+        "하나님께서 보내신 구원자는 누구입니까?",
+        "하나님께서 보내신 구원자는 하나님의 아들이신 예수 그리스도이십니다.",
+        "하나님의 아들은 사람들을 영원한 멸망의 심판으로부터 구원하기 위해 기꺼이 사람의 몸을 입고 세상에 오셨습니다.",
+        "하나님의 아들이신 예수 그리스도는 사람의 죄값을 치르기 위해 십자가에 못박혀 피를 흘리고 죽으셨습니다.",
+        "예수 그리스도는 죽음을 이기고 다시 살아나심으로 사람을 영원한 멸망으로부터 구원하여 영원한 생명을 주시는 권세를 가지셨습니다.",
+        "누구든지 하나님의 아들 예수 그리스도를 믿고 받아들이는 사람은 영원한 멸망으로부터 구원받아서 영원한 생명을 얻게 됩니다.",
+        "영원한 생명을 얻게 되는 사람은 하나님의 아들이신 예수 그리스도의 은혜로 말미암아 하나님의 자녀로 새롭게 태어나는 것입니다.",
+        "세상에서 살아가는 시간 동안에 구원의 기회가 있습니다. 심판으로 이어지는 죽음을 맞기 전에 예수 그리스도를 믿는 것이 인생을 복되게 살아가는 최고의 지혜입니다.",
+        "인생의 참된 행복을 얻기를 원하시면, 창조주 하나님을 믿고, 예수 그리스도를 구원자로 받아들이십시오."
+      ];
+
+        var contents = gn[p];
+        var myElement = document.getElementById('goodnews');
+        myElement.value = contents;
+        var page_no = 1;
+        var myPage = document.getElementById('pn');
+        myPage.value = page_no;
+
+
+    function goto_Before(){
+      if (p>0) {
+         p = p - 1;
+         contents = gn[p];
+         myElement = document.getElementById('goodnews');
+         myElement.value = contents;
+         page_no = p + 1;
+         myPage = document.getElementById('pn');
+         myPage.value = page_no;
+      }
+    }
+
+    function goto_Next(){
+      if (p<17) {
+         p = p + 1;
+         contents = gn[p];
+         myElement = document.getElementById('goodnews');
+         myElement.value = contents;
+         page_no = p + 1;
+         myPage = document.getElementById('pn');
+         myPage.value = page_no;
+      }
+    }
+
+    </script>
+
+
+</body>
+</html>
