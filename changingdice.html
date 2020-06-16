@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>번호 추첨</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>(번호 추첨) 변형 주사위 던지기</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+
+    <span style="font-size:40px;">주사위 값 </span>
+    <input type="text" id="dicek1" name="dicek1" value="1"
+                         style = "text-align:center; font-size:40px; width:100px; height:70px;
+                         border-width: 5px;">
+    <input type="text" id="dicek2" name="dicek2" value="2"
+                         style = "text-align:center; font-size:40px; width:100px; height:70px;
+                         border-width: 5px;">
+    <input type="text" id="dicek3" name="dicek3" value="3"
+                         style = "text-align:center; font-size:40px; width:100px; height:70px;
+                         border-width: 5px;">
+    <input type="text" id="dicek4" name="dicek4" value="4"
+                         style = "text-align:center; font-size:40px; width:100px; height:70px;
+                         border-width: 5px;">
+    <input type="text" id="dicek5" name="dicek5" value="5"
+                         style = "text-align:center; font-size:40px; width:100px; height:70px;
+                         border-width: 5px;">
+    <input type="text" id="dicek6" name="dicek6" value="6"
+                         style = "text-align:center; font-size:40px; width:100px; height:70px;
+                         border-width: 5px;">
+    <span style="margin-left:30px;">     </span>
+    <input type="button" value="변형 주사위 설정" onclick="changeDice()"
+                         style = "text-align:center; font-size:40px; color:black;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    <input type="text" id="cnumber" name="cnumber" value = "나온 값 : "
+                         style = "text-align:center; font-size:200px; width:100%;
+                         border-width: 5px;"><br><br>
+    <input type="text" id="cnums" name="cnums" value = "여기에는 나온 값들이 차례로 표시됩니다."
+                         style = "font-size:25px; width:100%;
+                         border-radius: 8px; border-width: 3px;"><br><br>
+    <input type="button" value="   변형주사위 던지기   " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** 주사위의 값을 자유롭게 입력하고, '변형 주사위 설정' 버튼을 클릭하세요.<br>
+      ** '변형주사위 던지기' 버튼을 한 번씩 클릭하면서 진행하세요.<br>
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var dicekind1 = "1";
+      var dicekind2 = "2";
+      var dicekind3 = "3";
+      var dicekind4 = "4";
+      var dicekind5 = "5";
+      var dicekind6 = "6";
+
+      var cnum = "나온 값 : ";
+      document.getElementById("cnumber").value = "??????";
+      document.getElementById("cnums").value = cnum;
+
+
+      function changeDice(){
+        dicekind1 = document.getElementById("dicek1").value;
+        dicekind2 = document.getElementById("dicek2").value;
+        dicekind3 = document.getElementById("dicek3").value;
+        dicekind4 = document.getElementById("dicek4").value;
+        dicekind5 = document.getElementById("dicek5").value;
+        dicekind6 = document.getElementById("dicek6").value;
+        document.getElementById("cnumber").value = "??????";
+        cnum = "나온 값 : "
+        document.getElementById("cnums").value = cnum;
+      }
+
+
+      function choosenum(){
+
+        var randomnum;
+        var rand = Math.random();
+        randomnum = Math.floor(rand * 6) + 1;
+
+        if (randomnum == 1) {
+        document.getElementById("cnumber").value = dicekind1;
+        cnum = cnum + dicekind1 + ",  ";
+        document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 2) {
+        document.getElementById("cnumber").value = dicekind2;
+        cnum = cnum + dicekind2 + ",  ";
+        document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 3) {
+        document.getElementById("cnumber").value = dicekind3;
+        cnum = cnum + dicekind3 + ",  ";
+        document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 4) {
+        document.getElementById("cnumber").value = dicekind4;
+        cnum = cnum + dicekind4 + ",  ";
+        document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 5) {
+        document.getElementById("cnumber").value = dicekind5;
+        cnum = cnum + dicekind5 + ",  ";
+        document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 6) {
+        document.getElementById("cnumber").value = dicekind6;
+        cnum = cnum + dicekind6 + ",  ";
+        document.getElementById("cnums").value = cnum;
+        }
+
+      }
+
+
+    </script>
+
+  </body>
+</html>
