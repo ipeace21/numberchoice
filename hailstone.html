@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>우박수</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>우박수</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+    <input type="text" id="tonumber" name="tonumber" value="3"
+                         style = "text-align:center; font-size: 40px;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         width: 180px;">
+    <span style = "font-size: 40px; padding-left: 20px;"> -- (짝수*2 / 홀수*3+1) -- 몇 번만에 1일 될까? </span><br><br>
+    <input type="text" id="cnumber" name="cnumber" value = "몇 번만에?"
+                         style = "text-align:center; font-size:100px; width:100%;
+                         border-width: 5px;"><br><br>
+
+    <textarea id="cnums" name="cnums" form="addinput"
+                         style="font-size : 30px;
+                                border: 1px solid #737373;
+                                border-radius: 0px;
+                                background-color: rgb(240, 255, 255);
+                                width:100%; height:200px;
+                                padding:15px;
+                                color:black;
+                                outline:none;
+                                margin-top:10px;
+                                box-shadow: 0px 0px 10px 3px #737373;"></textarea><br><br>
+    <input type="button" value="    우박수 구하기    " onclick="hailnum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** 우박수를 구할 자연수를 하나 입력하고 '우박수 구하기' 버튼을 클릭하세요.<br>
+      ** 자연수를 하나 선택하여 짝수이면 2를 곱하고, 홀수이면 3을 곱한 후에 1을 더하는 과정을 계속하면 중간에 여러 수들을 거쳐서 결국 1이 됩니다. 이때 중간에 나타나는 수들을 우박수라고 합니다.<br>
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var howlong = 3;
+      var howmany = 0;
+      var cnum = "우박수 : ";
+
+      function hailnum(){
+          howlong = Number(document.getElementById("tonumber").value);
+          howmany = 0;
+          cnum = "우박수 : " + howlong;
+          document.getElementById("cnumber").value = "";
+          document.getElementById("cnums").value = cnum;
+
+          while(howlong != 1){
+            if(howlong % 2 == 0){
+              howlong = howlong / 2;
+            } else {
+              howlong = howlong * 3 + 1;
+            }
+            howmany = howmany + 1;
+            document.getElementById("cnumber").value = howmany;
+            cnum = cnum + " > " + howlong;
+            document.getElementById("cnums").value = cnum;
+         }
+      }
+
+
+    </script>
+
+  </body>
+</html>
