@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>주사위 두 개 동시에 던지기</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>주사위 두 개 동시에 던지기</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+
+    <span style="font-size:40px;">던진 횟수 </span>
+    <input type="text" id="chow" name="chow" value="횟수"
+                         style = "text-align:center; font-size:40px; width:200px;
+                         border-width: 5px;">
+    <span style="margin-left:30px;">     </span>
+    <input type="button" value="던진 횟수 초기화" onclick="initNum()"
+                         style = "text-align:center; font-size:40px; color:black;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    <input type="text" id="cnumber1" name="cnumber1" value = "첫째"
+                         style = "text-align:center; font-size:200px; width:45%;
+                         border-width: 5px;">
+    <span style="margin-left:20px;"> </span>
+    <input type="text" id="cnumber2" name="cnumber2" value = "둘째"
+                         style = "text-align:center; font-size:200px; width:45%;
+                         border-width: 5px;"><br><br>
+    <input type="text" id="cnums" name="cnums" value = "여기에는 나온 숫자들이 차례로 표시됩니다."
+                         style = "font-size:25px; width:100%;
+                         border-radius: 8px; border-width: 3px;"><br><br>
+    <input type="button" value="   주사위 던지기   " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** '주사위 던지기' 버튼을 한 번씩 클릭하면서 진행하세요.
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var howmany = 0;
+      var cnum = "나온 숫자 : ";
+      document.getElementById("chow").value = howmany;
+      document.getElementById("cnumber1").value = "첫째";
+      document.getElementById("cnumber2").value = "둘째";
+      document.getElementById("cnums").value = cnum;
+
+
+      function initNum(){
+        howmany = 0;
+        document.getElementById("chow").value = howmany;
+        document.getElementById("cnumber1").value = "첫째";
+        document.getElementById("cnumber2").value = "둘째";
+        cnum = "나온 숫자 : "
+        document.getElementById("cnums").value = cnum;
+      }
+
+
+      function choosenum(){
+
+        var randomnum1;
+        var randomnum2;
+        var rand1 = Math.random();
+        var rand2 = Math.random();
+        randomnum1 = Math.floor(rand1 * 6) + 1;
+        randomnum2 = Math.floor(rand2 * 6) + 1;
+
+        howmany++;
+        document.getElementById("chow").value = howmany;
+        document.getElementById("cnumber1").value = randomnum1;
+        document.getElementById("cnumber2").value = randomnum2;
+        cnum = cnum + "(" + randomnum1 + "," + randomnum2 + ")  ";
+        document.getElementById("cnums").value = cnum;
+
+      }
+
+
+    </script>
+
+  </body>
+</html>
