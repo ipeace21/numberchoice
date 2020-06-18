@@ -22,10 +22,20 @@
                          style = "text-align:center; font-size:40px; color:black;
                          box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
                          border-radius: 5px;"><br><br>
-    <input type="text" id="cnumber" name="cnumber" value = "나온 숫자"
-                         style = "text-align:center; font-size:200px; width:100%;
-                         border-width: 5px;"><br><br>
-    <input type="text" id="cnums" name="cnums" value = "여기에는 나온 숫자들이 차례로 표시됩니다."
+
+    <table style="margin:0; padding:0;"><tr>
+      <td style="text-align:center; width:65%;">
+      <input type="text" id="cnumber" name="cnumber" value = "나온 숫자"
+                         style = "text-align:center; font-size:240px; width:90%;
+                         border-width: 5px;">
+      </td>
+      <td style="text-align:center; width:35%;">
+      <img src="dice0.jpg" alt="주사위"
+           id="rockimg" name="rockimg" style="vertical-align: middle; width:280px;">
+      </td>
+    </tr></table><br>
+      
+      <input type="text" id="cnums" name="cnums" value = "여기에는 나온 숫자들이 차례로 표시됩니다."
                          style = "font-size:25px; width:100%;
                          border-radius: 8px; border-width: 3px;"><br><br>
     <input type="button" value="   주사위 던지기   " onclick="choosenum()"
@@ -69,9 +79,44 @@
 
         howmany++;
         document.getElementById("chow").value = howmany;
-        document.getElementById("cnumber").value = randomnum;
-        cnum = cnum + (randomnum) + ",  ";
-        document.getElementById("cnums").value = cnum;
+        
+        if (randomnum == 1){
+          document.getElementById("cnumber").value = randomnum;
+          document.getElementById("rockimg").src = "dice1.jpg";
+          cnum = cnum + "1" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 2){
+          document.getElementById("cnumber").value = randomnum;
+          document.getElementById("rockimg").src = "dice2.jpg";
+          cnum = cnum + "2" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 3){
+          document.getElementById("cnumber").value = randomnum;
+          document.getElementById("rockimg").src = "dice3.jpg";
+          cnum = cnum + "3" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 4){
+          document.getElementById("cnumber").value = randomnum;
+          document.getElementById("rockimg").src = "dice4.jpg";
+          cnum = cnum + "4" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 5){
+          document.getElementById("cnumber").value = randomnum;
+          document.getElementById("rockimg").src = "dice5.jpg";
+          cnum = cnum + "5" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+        if (randomnum == 6){
+          document.getElementById("cnumber").value = randomnum;
+          document.getElementById("rockimg").src = "dice6.jpg";
+          cnum = cnum + "6" + ",  ";
+          document.getElementById("cnums").value = cnum;
+        }
+
 
       }
 
