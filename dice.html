@@ -25,7 +25,7 @@
 
     <table style="margin:0; padding:0;"><tr>
       <td style="text-align:center; width:65%;">
-      <input type="text" id="cnumber" name="cnumber" value = "나온 숫자"
+      <input type="text" id="cnumber" name="cnumber" value = "?"
                          style = "text-align:center; font-size:240px; width:90%;
                          border-width: 5px;">
       </td>
@@ -58,14 +58,15 @@
       var howmany = 0;
       var cnum = "나온 숫자 : ";
       document.getElementById("chow").value = howmany;
-      document.getElementById("cnumber").value = "나올 수는?";
+      document.getElementById("cnumber").value = "?";
       document.getElementById("cnums").value = cnum;
 
 
       function initNum(){
         howmany = 0;
         document.getElementById("chow").value = howmany;
-        document.getElementById("cnumber").value = "나올 수는?";
+        document.getElementById("cnumber").value = "?";
+        document.getElementById("rockimg").src = "dice0.jpg";
         cnum = "나온 숫자 : "
         document.getElementById("cnums").value = cnum;
       }
