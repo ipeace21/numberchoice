@@ -1,0 +1,242 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>숫자야구 게임</title>
+
+    <style>
+      .stimes{
+        width: 10%;
+        text-align: center;
+        font-size: 40px;
+      }
+      .snum{
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+      }
+      .scount{
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+      }
+
+    </style>
+
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>숫자야구 게임</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+
+    <table style="width:100%;">
+      <tr style="width:100%;">
+        <th style="width:10%; background:pink; font-size:30px;">회</th>
+        <th style="width:20%; background:yellowgreen; font-size:30px;">예측값</th>
+        <th style="width:20%; background:skyblue; font-size:30px;">카운트</th>
+        <th style="width:50%; background:orange; font-size:30px;">게임 진행</th>
+      </tr>
+      <tr>
+        <td class="stimes">1회</td>
+        <td> <input class="snum" type="text" id="bno1" name="bno1" value=""> </td>
+        <td> <input class="scount" type="text" id="bco1" name="bco1" value=""> </td>
+        <td rowspan="9" style="text-align:center; font-size:10px;">
+
+          <input type="button" value=" 새로운 게임 만들기 " onclick="newgame()"
+                               style = "text-align:center; font-size:40px; color:blue;
+                               box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                               border-radius: 5px;"><br><br><br>
+
+           <input type="text" id="numxxx" name="numxxx" value = ""
+                               style = "text-align:center; font-size:40px; width:60%;
+                               color:purple;
+                               border-width: 5px;"><br><br><br><br>
+          <span style="font-size:30px;">0~9 숫자 3개의 구성 추측하기<span><br>
+
+           <input type="text" id="cnumber" name="cnumber" value = ""
+                                style = "text-align:center; font-size:70px; width:80%;
+                                border-width: 5px;"><br><br>
+
+           <input type="button" value="  예측값 결정  " onclick="choosenum()"
+                                style = "text-align:center; font-size:50px; color:red;
+                                box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                                border-radius: 5px;"><br><br>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="stimes">2회</td>
+        <td> <input class="snum" type="text" id="bno2" name="bno2" value=""> </td>
+        <td> <input class="scount" type="text" id="bco2" name="bco2" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">3회</td>
+        <td> <input class="snum" type="text" id="bno3" name="bno3" value=""> </td>
+        <td> <input class="scount" type="text" id="bco3" name="bco3" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">4회</td>
+        <td> <input class="snum" type="text" id="bno4" name="bno4" value=""> </td>
+        <td> <input class="scount" type="text" id="bco4" name="bco4" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">5회</td>
+        <td> <input class="snum" type="text" id="bno5" name="bno5" value=""> </td>
+        <td> <input class="scount" type="text" id="bco5" name="bco5" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">6회</td>
+        <td> <input class="snum" type="text" id="bno6" name="bno6" value=""> </td>
+        <td> <input class="scount" type="text" id="bco6" name="bco6" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">7회</td>
+        <td> <input class="snum" type="text" id="bno7" name="bno7" value=""> </td>
+        <td> <input class="scount" type="text" id="bco7" name="bco7" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">8회</td>
+        <td> <input class="snum" type="text" id="bno8" name="bno8" value=""> </td>
+        <td> <input class="scount" type="text" id="bco8" name="bco8" value=""> </td>
+      </tr>
+      <tr>
+        <td class="stimes">9회</td>
+        <td> <input class="snum" type="text" id="bno9" name="bno9" value=""> </td>
+        <td> <input class="scount" type="text" id="bco9" name="bco9" value=""> </td>
+      </tr>
+    </table>
+
+    </div>
+
+    <br>
+    <div style ="font-size:20px;">
+      ** '새로운 게임 만들기' 버튼을 클릭하여 바로 아래 칸에 '? ? ?'가 표시된 후에,<br>
+      ** 0~9 사이의 숫자 3개를 추측하여 입력하고 '예측값 결정' 버튼을 클릭하세요.<br>
+      ** 숫자의 자리와 값이 모두 같을 때는 Strike, 숫자가 있지만 자리가 같지 않을 때는 Ball이 됩니다.
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var howlong = 10;
+      var allnum = [];
+      var chosennum = [];
+      var chosennumbers = [];
+      var howmany;
+      var exactnum;
+      var win = 0;
+
+      function newgame(){
+        var i;
+        allnum = [];
+        chosennum = [];
+        chosennumbers = [];
+
+        for (i=1; i<10; i++){
+          document.getElementById("bno"+i.toString()).value = "";
+          document.getElementById("bco"+i.toString()).value = "";
+        }
+        document.getElementById("numxxx").value = "";
+        document.getElementById("cnumber").value = "";
+
+
+        for(i=0; i<howlong; i++){
+            allnum.push(i);
+        }
+
+        howmany = 0;
+        win = 0;
+
+        var randomnum;
+        i = 0;
+
+            while(i < howlong) {
+
+              var rand = Math.random();
+              randomnum = Math.floor(rand * (howlong+1)) - 1;
+
+              var j = 0;
+              var k = 0;
+              for(j = 0; j < i; j++){
+                if (chosennum[j] === randomnum){
+                  k = k + 1;
+                }
+              }
+              if (k === 0){
+                chosennum[i] = randomnum;
+                chosennumbers[i] = allnum[randomnum];
+                i = i + 1;
+              }
+
+            }
+          exactnum = chosennumbers[0].toString() + chosennumbers[1].toString() + chosennumbers[2].toString();
+          document.getElementById("numxxx").value = "?  ?  ?";
+
+        }
+
+
+
+        function choosenum(){
+
+          var innum = document.getElementById("cnumber").value;
+          var innumstr = innum.toString();
+          var i;
+          var j;
+          var k;
+          var strike = 0;
+          var ball = 0;
+
+
+          if (innumstr.length == 3 && win == 0 ){
+
+            howmany = howmany + 1;
+            document.getElementById("bno"+howmany.toString()).value = innumstr;
+            document.getElementById("cnumber").value = "";
+
+            for(i=0 ; i<3 ; i++){
+                j = chosennumbers[i].toString();
+                k = innumstr.indexOf(j);
+                if (k >= 0){
+                  if (k == i){
+                    strike = strike + 1;
+                  } else {
+                    ball = ball + 1;
+                  }
+                }
+              }
+
+              if (strike == 3){
+                document.getElementById("bco"+howmany.toString()).value = "3S = Win";
+                document.getElementById("cnumber").value = "Win";
+                win = 1;
+              } else if (strike == 0 && ball ==0){
+                document.getElementById("bco"+howmany.toString()).value = "Out";
+              } else {
+                document.getElementById("bco"+howmany.toString()).value = strike + "S " + ball +"B";
+              }
+
+              if (howmany == 9 && strike != 3){
+                document.getElementById("numxxx").value =
+                 chosennumbers[0].toString() + " " + chosennumbers[1].toString() + " " + chosennumbers[2].toString();
+                 document.getElementById("cnumber").value = "Lose";
+              }
+
+          } else {
+            document.getElementById("cnumber").value = "";
+          }
+
+        }
+
+
+    </script>
+
+  </body>
+</html>
