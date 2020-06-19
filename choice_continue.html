@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>구간 번호 계속 추첨</title>
+  </head>
+
+
+  <body>
+    <div style = "text-align:center;">
+    <table style="width:100%;"><tr style="width:100%;">
+      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>구간 번호들 중에서 계속 추첨하기</b></td>
+      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+    </tr></table><br>
+
+    <input type="text" id="fromnumber" name="fromnumber" value="1"
+                         style = "text-align:center; font-size: 40px;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         width: 80;">
+    <span style = "font-size: 40px; padding-left: 10px; padding-right: 10px;">~</span>
+    <input type="text" id="tonumber" name="tonumber" value="12"
+                         style = "text-align:center; font-size: 40px;
+                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         width: 80;">
+    <span style = "font-size: 40px; padding-left: 10px;"> 범위에서 하나씩 계속 추첨</span><br><br>
+
+    <input type="text" id="chow" name="chow" value="순서"
+                         style = "text-align:center; font-size:40px; width:200px;
+                         border-width: 5px;">
+    <span style = "font-size: 40px; padding-left: 10px; padding-right: 10px;"></span>
+    <input type="button" value="순서 초기화" onclick="init_num()"
+                         style = "text-align:center; font-size:40px; color:black;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+
+    <input type="text" id="cnumber" name="cnumber" value = "추첨된 번호"
+                         style = "text-align:center; font-size:200px; width:100%;
+                         border-width: 5px;"><br><br>
+    <input type="text" id="cnums" name="cnums" value = "여기에는 추첨된 번호들이 차례로 표시됩니다."
+                         style = "font-size:25px; width:100%;
+                         border-radius: 8px; border-width: 3px;"><br><br>
+    <input type="button" value="    번호 추첨    " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+    </div>
+
+    <div style ="font-size:20px;">
+      ** 시작 번호와 끝 번호를 입력하고, '번호 추첨' 버튼을 한 번씩 클릭하면서 진행하세요.
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var number_s = 1;
+      var number_e = 12;
+      var number_d;
+      var howmany = 0;
+      var cnum = "추첨된 번호들 : ";
+      var rand;
+      var randomnum;
+      var resultnum;
+
+      function init_num(){
+        cnum = "추첨된 번호들 : ";
+        document.getElementById("chow").value = "순서";
+        document.getElementById("cnumber").value = "";
+        document.getElementById("cnums").value = cnum;
+        howmany = 0;
+      }
+
+      function choosenum(){
+
+        number_s = document.getElementById("fromnumber").value;
+        number_e = document.getElementById("tonumber").value;
+        number_d = number_e - number_s + 1;
+        howmany = howmany + 1;
+
+
+        rand = Math.random();
+        randomnum = Math.floor(rand * number_d);
+        resultnum = Number(number_s) + Number(randomnum);
+
+        document.getElementById("chow").value = howmany;
+        cnum = cnum + resultnum + ", ";
+        document.getElementById("cnumber").value = resultnum;
+        document.getElementById("cnums").value = cnum;
+        }
+
+
+    </script>
+
+  </body>
+</html>
