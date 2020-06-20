@@ -36,7 +36,7 @@
     <table style="width:100%;">
       <tr style="width:100%;">
         <th style="width:10%; background:pink; font-size:30px;">회</th>
-        <th style="width:20%; background:yellowgreen; font-size:30px;">예측값</th>
+        <th style="width:20%; background:yellowgreen; font-size:30px;">추측값</th>
         <th style="width:20%; background:skyblue; font-size:30px;">카운트</th>
         <th style="width:50%; background:orange; font-size:30px;">게임 진행</th>
       </tr>
@@ -61,7 +61,7 @@
                                 style = "text-align:center; font-size:70px; width:80%;
                                 border-width: 5px;"><br><br>
 
-           <input type="button" value="  예측값 결정  " onclick="choosenum()"
+           <input type="button" value="  추측값 결정  " onclick="choosenum()"
                                 style = "text-align:center; font-size:50px; color:red;
                                 box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
                                 border-radius: 5px;"><br><br>
@@ -114,9 +114,11 @@
 
     <br>
     <div style ="font-size:20px;">
-      ** '새로운 게임 만들기' 버튼을 클릭하여 바로 아래 칸에 '? ? ?'가 표시된 후에,<br>
-      ** 0~9 사이의 숫자 3개를 추측하여 입력하고 '예측값 결정' 버튼을 클릭하세요.<br>
-      ** 숫자의 자리와 값이 모두 같을 때는 Strike, 숫자가 있지만 자리가 같지 않을 때는 Ball이 됩니다.
+      ** '새로운 게임 만들기' 버튼을 클릭해서 게임 숫자가 구성되면 바로 아래 칸에 '? ? ?'가 표시됩니다.<br>
+      ** 빈 칸에 0~9 사이의 숫자 3개를 추측하여 차례로 입력하고, '추측값 결정' 버튼을 클릭하세요.<br>
+      ** 추측한 숫자 각각의 자리와 값이 '? ? ?'와 같은 만큼 Strike(S)가 됩니다.<br>
+      ** 추측한 숫자가 '? ? ?' 안에 있지만 자리가 같지 않을 때는 Ball(B)이 됩니다.<br>
+      ** 추측한 숫자 3개가 모두 없을 경우에는 Out(오히려 찬스가 될 수도 있겠죠)이 됩니다.<br>
     </div>
 
 
