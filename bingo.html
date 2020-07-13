@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>고정 숫자 빙고 게임</title>
+
+    <style>
+      .bingoNo {
+        width: 10%;
+        background-color: yellowgreen;
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        font-size: 70px;
+        color: blue;
+      }
+
+    </style>
+
+  </head>
+
+
+  <body>
+      <div style = "text-align:center;">
+      <table style="width:100%;"><tr style="width:100%;">
+        <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>고정 숫자 빙고 게임</b></td>
+        <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
+      </tr></table><br>
+
+
+    <table>
+
+        <tr>
+          <td rowspan=3 width=3%>
+          <td rowspan=3 width=50% align=center>
+            <input type="button" value="  빙고 번호 발생하기  " onclick="makenum()"
+                         style = "text-align:center; font-size:40px;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+            <input type="text" id="chow" name="chow" value="순서"
+                         style = "text-align:center; font-size:40px; width:200px;
+                         border-width: 5px;"><br><br>
+            <input type="text" id="cnumber" name="cnumber" value = "번호"
+                         style = "text-align:center; font-size:200px; width:100%;
+                         border-width: 5px;"><br><br>
+            <input type="text" id="cnums" name="cnums" value = "여기에는 추첨된 번호들이 차례로 표시됩니다."
+                         style = "font-size:25px; width:100%;
+                         border-radius: 8px; border-width: 3px;"><br><br>
+            <input type="button" value="    번호 추첨    " onclick="choosenum()"
+                         style = "text-align:center; font-size:80px; color:red;
+                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
+                         border-radius: 5px;"><br><br>
+          </td>
+          <td width=4%>
+          <td class="bingoNo" id="w1">1</td>
+          <td class="bingoNo" id="w2">2</td>
+          <td class="bingoNo" id="w3">3</td>
+          <td width=3%>
+        </tr>
+        <tr>
+          <td width=4%>
+          <td class="bingoNo" id="w4">4</td>
+          <td class="bingoNo" id="w5">5</td>
+          <td class="bingoNo" id="w6">6</td>
+          <td width=3%>
+        </tr>
+        <tr>
+          <td width=4%>
+          <td class="bingoNo" id="w7">7</td>
+          <td class="bingoNo" id="w8">8</td>
+          <td class="bingoNo" id="w9">9</td>
+          <td width=3%>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <br><br>
+    <div style ="font-size:20px;">
+      ** '빙고 번호 발생하기' 버튼을 클릭한 후에, '번호 추첨' 버튼을 한 번씩 클릭하면서 진행하세요.
+    </div>
+
+
+    <div style = "font-size: 12px;"><br>
+      made by ipeace21, 2020.
+    </div>
+
+    <script>
+
+      var howlong = 9;
+      var allnum = [];
+      var chosennum = [];
+      var chosennumbers = [];
+      var howmany = 0;
+      var cnum = "";
+
+      function makenum(){
+          howlong = 9;
+          allnum = [];
+          chosennum = [];
+          chosennumbers = [];
+          for(i=0; i<howlong; i++){
+            allnum.push(i+1);
+          }
+          howmany = 0;
+          cnum = "선택된 번호들 : ";
+          document.getElementById("chow").value = "";
+          document.getElementById("cnumber").value = "";
+          document.getElementById("cnums").value = "";
+
+          var randomnum;
+            var i = 0;
+            while(i < howlong) {
+
+              var rand = Math.random();
+              randomnum = Math.floor(rand * howlong);
+
+
+              var j = 0;
+              var k = 0;
+              for(j = 0; j < i; j++){
+                if (chosennum[j] === randomnum){
+                  k = k + 1;
+                }
+              }
+              if (k === 0){
+                chosennum[i] = randomnum;
+                chosennumbers[i] = allnum[randomnum];
+                i = i + 1;
+              }
+
+            }
+
+            for(i=0;i<9;i++){
+              wherechange = "w"+(i+1);
+              document.getElementById(wherechange).style.backgroundColor = "yellowgreen";
+            }
+
+        }
+
+        function choosenum(){
+          if(howmany < howlong){
+            document.getElementById("chow").value = (howmany+1);
+            document.getElementById("cnumber").value = chosennumbers[howmany];
+            if(howmany<howlong-1){
+              cnum = cnum + chosennumbers[howmany] + ",  ";
+            } else {
+              cnum = cnum + chosennumbers[howmany]
+            }
+            document.getElementById("cnums").value = cnum;
+
+            wherechange = "w"+chosennumbers[howmany];
+            document.getElementById(wherechange).style.backgroundColor = "pink";
+
+            howmany = howmany + 1;
+          }
+
+        }
+
+
+    </script>
+
+  </body>
+</html>
