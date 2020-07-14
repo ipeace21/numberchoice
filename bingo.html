@@ -36,7 +36,7 @@
                          style = "text-align:center; font-size:40px;
                          box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
                          border-radius: 5px;"><br><br>
-            <input type="text" id="chow" name="chow" value="순서"
+            <input type="text" id="chow" name="chow" value="빙고"
                          style = "text-align:center; font-size:40px; width:200px;
                          border-width: 5px;"><br><br>
             <input type="text" id="cnumber" name="cnumber" value = "번호"
@@ -93,6 +93,8 @@
       var chosennumbers = [];
       var howmany = 0;
       var cnum = "";
+      var wherebingo = [];
+      var howmanybingo = 0;
 
       function makenum(){
           howlong = 9;
@@ -103,8 +105,10 @@
             allnum.push(i+1);
           }
           howmany = 0;
+          wherebingo = [0,0,0,0,0,0,0,0,0,0];
+          howmanybingo = 0;
           cnum = "선택된 번호들 : ";
-          document.getElementById("chow").value = "";
+          document.getElementById("chow").value = "빙고";
           document.getElementById("cnumber").value = "";
           document.getElementById("cnums").value = "";
 
@@ -138,9 +142,23 @@
 
         }
 
+
+        function howmanybingos(){
+
+          howmanybingo = 0;
+          if(wherebingo[1]==1 && wherebingo[2]==1 && wherebingo[3]==1){howmanybingo++;}
+          if(wherebingo[4]==1 && wherebingo[5]==1 && wherebingo[6]==1){howmanybingo++;}
+          if(wherebingo[7]==1 && wherebingo[8]==1 && wherebingo[9]==1){howmanybingo++;}
+          if(wherebingo[1]==1 && wherebingo[4]==1 && wherebingo[7]==1){howmanybingo++;}
+          if(wherebingo[2]==1 && wherebingo[5]==1 && wherebingo[8]==1){howmanybingo++;}
+          if(wherebingo[3]==1 && wherebingo[6]==1 && wherebingo[9]==1){howmanybingo++;}
+          if(wherebingo[1]==1 && wherebingo[5]==1 && wherebingo[9]==1){howmanybingo++;}
+          if(wherebingo[3]==1 && wherebingo[5]==1 && wherebingo[7]==1){howmanybingo++;}
+        }
+
         function choosenum(){
           if(howmany < howlong){
-            document.getElementById("chow").value = (howmany+1);
+
             document.getElementById("cnumber").value = chosennumbers[howmany];
             if(howmany<howlong-1){
               cnum = cnum + chosennumbers[howmany] + ",  ";
@@ -151,6 +169,11 @@
 
             wherechange = "w"+chosennumbers[howmany];
             document.getElementById(wherechange).style.backgroundColor = "pink";
+            wherebingo[chosennumbers[howmany]] = 1;
+
+            howmanybingos();
+
+            document.getElementById("chow").value = howmanybingo+" Bingo";
 
             howmany = howmany + 1;
           }
