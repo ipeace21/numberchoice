@@ -101,7 +101,7 @@
     function goto_Before(){
       if (p>1) {
          const target = document.getElementById('btn_before');
-         target.disabled = true;
+         target.disabled = false;
          p = p - 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -111,7 +111,7 @@
          myPage.value = page_no;
       } else {
          const target = document.getElementById('btn_before');
-         target.disabled = false;
+         target.disabled = true;
          p = 0;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -126,7 +126,7 @@
     function goto_Next(){
       if (p<16) {
          const target = document.getElementById('btn_next');
-         target.disabled = true;
+         target.disabled = false;
          p = p + 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -136,7 +136,7 @@
          myPage.value = page_no;
       } else {
          const target = document.getElementById('btn_next');
-         target.disabled = false;   
+         target.disabled = true;   
           p = 17;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
