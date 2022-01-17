@@ -100,10 +100,10 @@
 
     function goto_Before(){
       if (p>0) {
-         const target = document.getElementById('btn_before');
-         target.disabled = false;
-         const target = document.getElementById('btn_next');
-         target.disabled = false;
+         const target1 = document.getElementById('btn_before');
+         target1.disabled = false;
+         const target2 = document.getElementById('btn_next');
+         target2.disabled = false;
          p = p - 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -112,8 +112,8 @@
          myPage = document.getElementById('pn');
          myPage.value = page_no;
       } else {
-         const target = document.getElementById('btn_before');
-         target.disabled = true;
+         const target1 = document.getElementById('btn_before');
+         target1.disabled = true;
          p = 0;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -127,10 +127,10 @@
 
     function goto_Next(){
       if (p<17) {
-         const target = document.getElementById('btn_before');
-         target.disabled = false;
-         const target = document.getElementById('btn_next');
-         target.disabled = false;
+         const target1 = document.getElementById('btn_before');
+         target1.disabled = false;
+         const target2 = document.getElementById('btn_next');
+         target2.disabled = false;
          p = p + 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -139,8 +139,8 @@
          myPage = document.getElementById('pn');
          myPage.value = page_no;
       } else {
-         const target = document.getElementById('btn_next');
-         target.disabled = true;   
+         const target2 = document.getElementById('btn_next');
+         target2.disabled = true;   
           p = 17;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
