@@ -51,14 +51,14 @@
                     value= "{{ contents }}"
                     class="cl_textarea"></textarea><br><br>
         <span>
-            <button type="submit" class="cl_button"
+            <button type="submit" class="cl_button" id="btn_before"
                        onclick="goto_Before()">이전으로</button>
             <span>.... </span>
             <input type="text" id="pn" name="pn"
                    value="{{ page_no }}"
                    style="width:50px; border:none; font-size:25px; text-align:center;">
             <span> ....</span>
-            <button type="submit" class="cl_button"
+            <button type="submit" class="cl_button" id="btn_next"
                        onclick="goto_Next()">다음으로</button>
         </span>
     </div>
@@ -100,6 +100,8 @@
 
     function goto_Before(){
       if (p>0) {
+         const target = document.getElementById('btn_before');
+         target.disabled = true;
          p = p - 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -107,11 +109,17 @@
          page_no = p + 1;
          myPage = document.getElementById('pn');
          myPage.value = page_no;
+      } else {
+         const target = document.getElementById('btn_before');
+         target.disabled = false;   
       }
+       
     }
 
     function goto_Next(){
       if (p<17) {
+         const target = document.getElementById('btn_next');
+         target.disabled = false;
          p = p + 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -119,6 +127,9 @@
          page_no = p + 1;
          myPage = document.getElementById('pn');
          myPage.value = page_no;
+      } else {
+         const target = document.getElementById('btn_next');
+         target.disabled = false;   
       }
     }
 
