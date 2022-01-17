@@ -68,7 +68,7 @@
 
 
     <script>
-    var p=0;
+    
     var gn = [
         "인생은?",
         "사람이 살아가는 것입니다.",
@@ -90,19 +90,20 @@
         "인생의 참된 행복을 얻기를 원하면, 창조주 하나님을 믿고, 예수 그리스도를 구원자로 받아들이십시오."
       ];
 
-        var contents = gn[p];
-        var myElement = document.getElementById('goodnews');
-        myElement.value = contents;
-        var page_no = 1;
-        var myPage = document.getElementById('pn');
-        myPage.value = page_no;
+    var p=0;
+    var contents = gn[p];
+    var myElement = document.getElementById('goodnews');
+    myElement.value = contents;
+    var page_no = p + 1;
+    var myPage = document.getElementById('pn');
+    myPage.value = page_no;
 
 
     function goto_Before(){
       if (p>0) {
-         const target1 = document.getElementById('btn_before');
+         var target1 = document.getElementById('btn_before');
          target1.disabled = false;
-         const target2 = document.getElementById('btn_next');
+         var target2 = document.getElementById('btn_next');
          target2.disabled = false;
          p = p - 1;
          contents = gn[p];
@@ -112,7 +113,7 @@
          myPage = document.getElementById('pn');
          myPage.value = page_no;
       } else {
-         const target1 = document.getElementById('btn_before');
+         var target1 = document.getElementById('btn_before');
          target1.disabled = true;
          p = 0;
          contents = gn[p];
@@ -127,9 +128,9 @@
 
     function goto_Next(){
       if (p<17) {
-         const target1 = document.getElementById('btn_before');
+         var target1 = document.getElementById('btn_before');
          target1.disabled = false;
-         const target2 = document.getElementById('btn_next');
+         var target2 = document.getElementById('btn_next');
          target2.disabled = false;
          p = p + 1;
          contents = gn[p];
@@ -139,7 +140,7 @@
          myPage = document.getElementById('pn');
          myPage.value = page_no;
       } else {
-         const target2 = document.getElementById('btn_next');
+         var target2 = document.getElementById('btn_next');
          target2.disabled = true;   
           p = 17;
          contents = gn[p];
