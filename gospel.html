@@ -102,6 +102,8 @@
       if (p>1) {
          const target = document.getElementById('btn_before');
          target.disabled = false;
+         const target = document.getElementById('btn_next');
+         target.disabled = false;
          p = p - 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -125,6 +127,8 @@
 
     function goto_Next(){
       if (p<16) {
+         const target = document.getElementById('btn_before');
+         target.disabled = false;
          const target = document.getElementById('btn_next');
          target.disabled = false;
          p = p + 1;
