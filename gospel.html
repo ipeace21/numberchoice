@@ -51,7 +51,7 @@
                     value= "{{ contents }}"
                     class="cl_textarea"></textarea><br><br>
         <span>
-            <button type="submit" class="cl_button" id="btn_before"
+            <button type="submit" class="cl_button" id="btn_before" disabled
                        onclick="goto_Before()">이전으로</button>
             <span>.... </span>
             <input type="text" id="pn" name="pn"
@@ -112,7 +112,7 @@
       } else {
          const target = document.getElementById('btn_before');
          target.disabled = false;
-         p = p - 1;
+         p = 0;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
          myElement.value = contents;
@@ -126,7 +126,7 @@
     function goto_Next(){
       if (p<16) {
          const target = document.getElementById('btn_next');
-         target.disabled = false;
+         target.disabled = true;
          p = p + 1;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
@@ -137,7 +137,7 @@
       } else {
          const target = document.getElementById('btn_next');
          target.disabled = false;   
-          p = p + 1;
+          p = 17;
          contents = gn[p];
          myElement = document.getElementById('goodnews');
          myElement.value = contents;
