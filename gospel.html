@@ -99,7 +99,7 @@
 
 
     function goto_Before(){
-      if (p>0) {
+      if (p>1) {
          const target = document.getElementById('btn_before');
          target.disabled = true;
          p = p - 1;
@@ -111,13 +111,20 @@
          myPage.value = page_no;
       } else {
          const target = document.getElementById('btn_before');
-         target.disabled = false;   
+         target.disabled = false;
+         p = p - 1;
+         contents = gn[p];
+         myElement = document.getElementById('goodnews');
+         myElement.value = contents;
+         page_no = p + 1;
+         myPage = document.getElementById('pn');
+         myPage.value = page_no;
       }
        
     }
 
     function goto_Next(){
-      if (p<17) {
+      if (p<16) {
          const target = document.getElementById('btn_next');
          target.disabled = false;
          p = p + 1;
@@ -130,6 +137,13 @@
       } else {
          const target = document.getElementById('btn_next');
          target.disabled = false;   
+          p = p + 1;
+         contents = gn[p];
+         myElement = document.getElementById('goodnews');
+         myElement.value = contents;
+         page_no = p + 1;
+         myPage = document.getElementById('pn');
+         myPage.value = page_no;
       }
     }
 
