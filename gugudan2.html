@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단 문제</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: lightgray; /* 기본 배경색 */
+            border: none;
+            border-radius: 5px;
+            color: black;
+        }
+        .buttons button.active {
+            background-color: lightblue; /* 선택된 단의 배경색 */
+        }
+        #question {
+            font-size: 160px;
+            margin-bottom: 0px;
+        }
+        .result {
+            margin-top: 0px;
+            font-size: 160px;
+            color: red;
+        }
+        #progress {
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div align=center width=700>
+
+    <h1>구구단 문제 풀기</h1>
+
+    <label for="numQuestions" style="font-size:25px;">몇 문제를 풀까요? </label>
+    <input type="number" id="numQuestions" min="1" max="100" value="5" style="font-size:25px;">
+    <br>
+    <table><tr><td>
+    <div class="buttons">
+        <button onclick="toggleDan(2, this)">2단</button>
+        <button onclick="toggleDan(3, this)">3단</button>
+        <button onclick="toggleDan(4, this)">4단</button>
+        <button onclick="toggleDan(5, this)">5단</button>
+        <button onclick="toggleDan(6, this)">6단</button>
+        <button onclick="toggleDan(7, this)">7단</button>
+        <button onclick="toggleDan(8, this)">8단</button>
+        <button onclick="toggleDan(9, this)">9단</button>
+    </div>
+    </td></tr></table>
+
+    <table><tr>
+        <td style="width : 100px;"></td>
+        <td><button onclick="startQuiz()" style="font-size:25px; width : 250px;">퀴즈 시작</button></td>
+        <td style="width : 50px;"></td>
+        <!-- 현재 몇 번째 문제인지 표시할 영역 -->
+        <td style="width : 150px;"><div id="progress"></div></td>
+        <td style="width : 100px;"></td>
+    </tr></table>
+
+    <br><br>
+
+    <div id="quizContainer" style="display:none;">
+        <table><tr height="130">
+        <td style="width : 520px;"><div id="question"></div></td>
+        <td style="width : 180px;"><div class="result" id="result"></div></td>
+        </tr></table>
+    </div>
+
+    </div>
+
+
+
+
+    <script>
+        let selectedDans = [];
+        let numQuestions = 0;
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        let intervalId;
+        let quizStart = 0;
+
+        document.getElementById('progress').innerText = ` 현재 / 전체 `;
+
+        // 단 선택 토글 함수 (색상 변화 포함)
+        function toggleDan(dan, button) {
+            const index = selectedDans.indexOf(dan);
+            if (index === -1) {
+                selectedDans.push(dan);
+                button.classList.add('active');  // 선택된 단 색상 변경
+            } else {
+                selectedDans.splice(index, 1);
+                button.classList.remove('active');  // 선택 해제 시 색상 복구
+            }
+        }
+
+        // 랜덤 문제 생성
+        function generateRandomQuestion() {
+            const num1 = selectedDans[Math.floor(Math.random() * selectedDans.length)];
+            const num2 = Math.floor(Math.random() * 9) + 1;
+            const correctAnswer = num1 * num2;
+
+            return { num1, num2, correctAnswer };
+        }
+
+        // 퀴즈 시작
+        function startQuiz() {
+            if (selectedDans.length === 0) {
+                alert("최소한 하나의 단을 선택하세요.");
+                return;
+            }
+            if (quizStart == 1) {
+                return;
+            }
+
+            quizStart = 1;
+
+            numQuestions = document.getElementById('numQuestions').value;
+            currentQuestion = 0;
+            correctAnswers = 0;
+
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('result').innerText = '';
+            updateProgress();
+
+            showNextQuestion();
+        }
+
+        // 다음 문제 표시
+        function showNextQuestion() {
+            if (currentQuestion >= numQuestions) {
+                endQuiz();
+                return;
+            }
+
+            const { num1, num2, correctAnswer } = generateRandomQuestion();
+            document.getElementById('question').innerText = `${num1} x ${num2} =  `;
+            document.getElementById('result').innerText = '';  // 정답 초기화
+
+            let timeLeft = 1; // 2초 카운트다운
+            intervalId = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    clearInterval(intervalId);
+                    checkAnswer(num1, num2, correctAnswer);
+                }
+            }, 1000);
+        }
+
+        // 정답 확인
+        function checkAnswer(num1, num2, correctAnswer) {
+            document.getElementById('result').innerText = `${correctAnswer}`;
+
+            setTimeout(() => {
+                currentQuestion++;
+                updateProgress();  // 현재 문제 진행 상태 업데이트
+                showNextQuestion();
+            }, 1500); // 정답 표시 후 1.5초 뒤에 다음 문제로 이동
+        }
+
+        // 진행 상태 업데이트
+        function updateProgress() {
+            if (currentQuestion < numQuestions) {
+                document.getElementById('progress').innerText = ` ${currentQuestion + 1} / ${numQuestions} `;
+            } else {
+                document.getElementById('progress').innerText = ` 현재 / 전체 `;
+            }
+        }
+
+        // 퀴즈 종료
+        function endQuiz() {
+            quizStart = 0;
+            currentQuestion = 0;
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('result').innerText = `퀴즈 종료! ${numQuestions} 문제 중 ${correctAnswers} 개 맞췄습니다.`;
+        }
+    </script>
+
+</body>
+</html>
