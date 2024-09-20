@@ -62,6 +62,24 @@
         #progress {
             font-size: 2.5em;
         }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .slider {
+            width: 300px;
+        }
+
+        .step-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            margin-top: 10px;
+        }
+        
     </style>
 </head>
 
@@ -87,6 +105,17 @@
         <button onclick="toggleDan(9, this)">9단</button>
     </div>
     </td></tr></table>
+
+    <div class="slider-container">
+        <input type="range" min="1" max="3" step="1" value="1" class="slider" id="stepSlider" oninput="updateValue()">
+        <span id="currentValue">1단계</span>
+    </div>
+
+    <div class="step-labels">
+        <span>1단계</span>
+        <span>2단계</span>
+        <span>3단계</span>
+    </div>
 
     <table><tr>
         <td style="width : 10%;"></td>
@@ -121,6 +150,7 @@
         let correctAnswers = 0;
         let intervalId;
         let quizStart = 0;
+        let speedStage = 1;
 
         document.getElementById('progress').innerText = ` 현재 / 전체 `;
 
@@ -179,7 +209,7 @@
             document.getElementById('question').innerText = `${num1} x ${num2} =  `;
             document.getElementById('result').innerText = '';  // 정답 초기화
 
-            let timeLeft = 1; // 2초 카운트다운
+            let timeLeft = speedStage; // 2초 카운트다운
             intervalId = setInterval(() => {
                 if (timeLeft > 0) {
                     timeLeft--;
@@ -217,6 +247,13 @@
             document.getElementById('quizContainer').style.display = 'none';
             document.getElementById('result').innerText = `퀴즈 종료! ${numQuestions} 문제 중 ${correctAnswers} 개 맞췄습니다.`;
         }
+
+
+        function updateValue() {
+            const slider = document.getElementById('stepSlider');
+            const output = document.getElementById('currentValue');
+            speedStage = 4 - slider.value;
+        }        
     </script>
 
 </body>
