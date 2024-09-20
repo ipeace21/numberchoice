@@ -4,18 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>구구단 문제</title>
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+        /* 해상도가 400px 이하일 때 */
+        @media (max-width: 400px) {
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                font-size: 4px;
+            }
         }
+
+        /* 해상도가 401px에서 700px 사이일 때 */
+        @media (min-width: 401px) and (max-width: 700px) {
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                font-size: 6px;
+            }
+        }
+
+        /* 해상도가 701px 이상일 때 */
+        @media (min-width: 701px) {
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                font-size: 10px;
+            }
+        }
+
         .buttons {
             margin-bottom: 20px;
         }
         .buttons button {
             margin: 5px;
             padding: 10px;
-            font-size: 18px;
+            font-size: 2em;
             cursor: pointer;
             background-color: lightgray; /* 기본 배경색 */
             border: none;
@@ -26,16 +50,16 @@
             background-color: lightblue; /* 선택된 단의 배경색 */
         }
         #question {
-            font-size: 160px;
+            font-size: 16em;
             margin-bottom: 0px;
         }
         .result {
             margin-top: 0px;
-            font-size: 160px;
+            font-size: 16em;
             color: red;
         }
         #progress {
-            font-size: 25px;
+            font-size: 2.5em;
         }
     </style>
 </head>
@@ -43,12 +67,12 @@
 
 <body>
 
-    <div align=center width=700>
+    <div align=center width=100%>
 
     <h1>구구단 문제 풀기</h1>
 
-    <label for="numQuestions" style="font-size:25px;">몇 문제를 풀까요? </label>
-    <input type="number" id="numQuestions" min="1" max="100" value="5" style="font-size:25px;">
+    <label for="numQuestions" style="font-size:2.5em;">몇 문제를 풀까요? </label>
+    <input type="number" id="numQuestions" min="1" max="100" value="5" style="font-size:2.5em;">
     <br>
     <table><tr><td>
     <div class="buttons">
@@ -64,20 +88,20 @@
     </td></tr></table>
 
     <table><tr>
-        <td style="width : 100px;"></td>
-        <td><button onclick="startQuiz()" style="font-size:25px; width : 250px;">퀴즈 시작</button></td>
-        <td style="width : 50px;"></td>
+        <td style="width : 15%;"></td>
+        <td><button onclick="startQuiz()" style="font-size:2.5em; width : 35%;">퀴즈 시작</button></td>
+        <td style="width : 10%;"></td>
         <!-- 현재 몇 번째 문제인지 표시할 영역 -->
-        <td style="width : 150px;"><div id="progress"></div></td>
-        <td style="width : 100px;"><a href="index.html">Home</a></td>
+        <td style="width : 25%;"><div id="progress"></div></td>
+        <td style="width : 15%;"><a href="index.html">Home</a></td>
     </tr></table>
         
     <br><br>
 
     <div id="quizContainer" style="display:none;">
         <table><tr height="130">
-        <td style="width : 520px;"><div id="question"></div></td>
-        <td style="width : 180px;"><div class="result" id="result"></div></td>
+        <td style="width : 75%;"><div id="question"></div></td>
+        <td style="width : 25%;"><div class="result" id="result"></div></td>
         </tr></table>
     </div>
 
