@@ -51,12 +51,12 @@
             background-color: lightblue; /* 선택된 단의 배경색 */
         }
         #question {
-            font-size: 15em;
+            font-size: 14em;
             margin-bottom: 0px;
         }
         .result {
             margin-top: 0px;
-            font-size: 15em;
+            font-size: 14em;
             color: red;
         }
         #progress {
@@ -70,10 +70,10 @@
 
     <div align=center width=100%>
 
-    <p style="font-size:4em;">구구단 문제 풀기</p>
+    <p style="font-size:5em;">구구단 문제 풀기</p>
 
-    <label for="numQuestions" style="font-size:3em;">몇 문제를 풀까요? </label>
-    <input type="number" id="numQuestions" min="1" max="100" value="5" style="font-size:3em;">
+    <label for="numQuestions" style="font-size:4em;">몇 문제를 풀까요? </label>
+    <input type="number" id="numQuestions" min="1" max="100" value="5" style="font-size:4em;">
     <br>
     <table><tr><td>
     <div class="buttons">
@@ -90,7 +90,7 @@
 
     <table><tr>
         <td style="width : 10%;"></td>
-        <td style="width : 30%;"><button onclick="startQuiz()" style="font-size:3em;" >퀴즈 시작</button></td>
+        <td style="width : 30%;"><button onclick="startQuiz()" style="font-size:4em;" >퀴즈 시작</button></td>
         <td style="width : 5%;"></td>
         <!-- 현재 몇 번째 문제인지 표시할 영역 -->
         <td style="width : 30%;" text-align:center;><div id="progress"></div></td>
@@ -102,8 +102,8 @@
 
     <div id="quizContainer" style="display:none;">
         <table><tr height="130">
-        <td style="width : 70%; text-align:left;"><div id="question"></div></td>
-        <td style="width : 30%; text-align:right;"><div class="result" id="result"></div></td>
+        <td style="width : 70%; text-align:center;"><div id="question"></div></td>
+        <td style="width : 30%; text-align:center;"><div class="result" id="result"></div></td>
         </tr></table>
     </div>
 
