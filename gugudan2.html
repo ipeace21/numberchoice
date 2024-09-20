@@ -254,8 +254,8 @@
         function updateValue() {
             const slider = document.getElementById('stepSlider');
             const output = document.getElementById('currentValue');
-            output.textContent = slider.value + '단계';
-            speedStage = 4 - int(slider.value);
+            speedStage = 4 - Number(slider.value);
+            output.textContent = slider.value + '단계 / ' + speedStage;
         }        
     </script>
 
