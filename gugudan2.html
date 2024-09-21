@@ -81,14 +81,14 @@
         }
 
         .progress-bar-container {
-            width: 100%;
+            width: 340px;
             background-color: #f3f3f3;
             border-radius: 0px;
             margin: 20px 0;
         }
         
         .progress-bar {
-            width: 0%;
+            width: 0px;
             height: 30px;
             background-color: #4caf50;
             border-radius: 0px;
@@ -264,8 +264,8 @@
         // 진행 상태막대 업데이트
         function updateProgressBar() {
             const progressBar = document.getElementById('progressBar');
-            const progress = ((currentQuestion + 1) / numQuestions.length) * 100;
-            progressBar.style.width = progress + '%';
+            const progress = ((currentQuestion + 1) / numQuestions.length) * 340;
+            progressBar.style.width = progress + 'px';
         }
 
         // 퀴즈 종료
