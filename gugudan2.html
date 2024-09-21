@@ -6,8 +6,16 @@
     <title>구구단 문제</title>
     
     <style>
+
+        :root {
+            --WIDTHLONG: 400px; /* 기본값 */
+        }
+        
         /* 해상도가 400px 이하일 때 */
         @media (max-width: 400px) {
+            :root {
+                --WIDTHLONG: 300px; /* 작은 해상도에서는 300px */
+            }
             body {
                 font-family: Arial, sans-serif;
                 padding: 4px;
@@ -81,7 +89,7 @@
         }
 
         .progress-bar-container {
-            width: 320px;
+            width: var(--WIDTHLONG); /* 변수로 설정한 너비 사용 */
             background-color: #d9d9d9;
             border-radius: 0px;
             margin: 20px 0;
