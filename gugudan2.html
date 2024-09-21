@@ -9,12 +9,14 @@
 
         :root {
             --WIDTHLONG: 400px; /* 기본값 */
+            --HEIGHTLONG: 30px; /* 기본값 */
         }
         
         /* 해상도가 400px 이하일 때 */
         @media (max-width: 400px) {
             :root {
                 --WIDTHLONG: 300px; /* 작은 해상도에서는 300px */
+                --HEIGHTLONG: 20px;
             }
             body {
                 font-family: Arial, sans-serif;
@@ -99,7 +101,7 @@
         }
         .progress-bar {
             width: 0%;
-            height: 20px;
+            height: var(--HEIGHTLONG); /* 변수로 설정한 높이 사용 */
             background-color: #b3b3b3;
             border-radius: 0px;
             display: flex;
