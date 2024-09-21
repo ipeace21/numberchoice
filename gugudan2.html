@@ -88,9 +88,9 @@
         }
         
         .progress-bar {
-            width: 0px;
+            width: 0%;
             height: 30px;
-            background-color: #4caf50;
+            background-color: #b3b3b3;
             border-radius: 0px;
         }
         
@@ -150,7 +150,7 @@
         </tr></table>
     </div>
 
-    <table style="width:340px;"><tr><td>
+    <table><tr><td>
     <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
@@ -264,8 +264,8 @@
         // 진행 상태막대 업데이트
         function updateProgressBar() {
             const progressBar = document.getElementById('progressBar');
-            const progress = ((currentQuestion + 1) / numQuestions.length) * 340;
-            progressBar.style.width = progress + 'px';
+            const progress = ((currentQuestion + 1) / numQuestions.length) * 100;
+            progressBar.style.width = progress + '%';
         }
 
         // 퀴즈 종료
