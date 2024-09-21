@@ -88,7 +88,7 @@
         }
         .progress-bar {
             width: 0%;
-            height: 15px;
+            height: 20px;
             background-color: #b3b3b3;
             border-radius: 0px;
         }
@@ -97,11 +97,12 @@
             width: 100%;
             top: 0;
             left: 0;
-            height: 30px;
+            height: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: black;
+            font-size: 1.5em;
             font-weight: bold;
         }
         
@@ -150,12 +151,11 @@
         <td style="width : 15%; font-size:2.5em; text-align:right;"><a href="index.html">Home</a></td>
         <td style="width : 10%;"></td>
     </tr></table>
-    <table><tr><td>
+
     <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
             <div class="progress-bar-text" id="progressText">0%</div>
     </div>
-    </td></tr></table>
         
     <br><br>
 
@@ -276,8 +276,14 @@
         function updateProgressBar() {
             const progressBar = document.getElementById('progressBar');
             const progress = ((currentQuestion + 1) / numQuestions) * 100;
-            progressBar.style.width = progress + '%';
-            progressText.textContent = Math.round(progress) + '%';
+            if(currentQuestion < numQuestions) {
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+            } else {
+                progressBar.style.width = '0%';
+                progressText.textContent = '0%';
+            }
+            
         }
 
         // 퀴즈 종료
