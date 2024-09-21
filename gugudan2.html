@@ -149,10 +149,11 @@
         </tr></table>
     </div>
 
-
+    <table><tr><td>
     <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
+    </td></tr></table>
         
     </div>
 
@@ -224,6 +225,7 @@
             const { num1, num2, correctAnswer } = generateRandomQuestion();
             document.getElementById('question').innerText = `${num1} x ${num2} =  `;
             document.getElementById('result').innerText = '';  // 정답 초기화
+            updateProgressBar();
 
             let timeLeft = speedStage; // 2초 카운트다운
             intervalId = setInterval(() => {
