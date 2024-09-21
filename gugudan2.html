@@ -82,16 +82,27 @@
 
         .progress-bar-container {
             width: 320px;
-            background-color: #f3f3f3;
+            background-color: #d9d9d9;
             border-radius: 0px;
             margin: 20px 0;
         }
-        
         .progress-bar {
             width: 0%;
             height: 15px;
             background-color: #b3b3b3;
             border-radius: 0px;
+        }
+        .progress-bar-text {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
         }
         
         
@@ -142,6 +153,7 @@
     <table><tr><td>
     <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-bar-text" id="progressText">0%</div>
     </div>
     </td></tr></table>
         
@@ -267,6 +279,7 @@
             const progressBar = document.getElementById('progressBar');
             const progress = ((currentQuestion + 1) / numQuestions) * 100;
             progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
         }
 
         // 퀴즈 종료
