@@ -81,7 +81,7 @@
         }
 
         .progress-bar-container {
-            width: 340px;
+            width: 320px;
             background-color: #f3f3f3;
             border-radius: 0px;
             margin: 20px 0;
@@ -89,7 +89,7 @@
         
         .progress-bar {
             width: 0%;
-            height: 30px;
+            height: 15px;
             background-color: #b3b3b3;
             border-radius: 0px;
         }
@@ -257,6 +257,8 @@
                 document.getElementById('progress').innerText = `[ ${currentQuestion + 1} / ${numQuestions} ]`;
             } else {
                 document.getElementById('progress').innerText = `[ 현재 / 전체 ]`;
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.width = '0%';
             }
         }
 
