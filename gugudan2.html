@@ -86,6 +86,7 @@
             border-radius: 0px;
             margin: 20px 0;
         }
+        
         .progress-bar {
             width: 0%;
             height: 30px;
@@ -149,11 +150,12 @@
         </tr></table>
     </div>
 
-    <table><tr><td>
+    <table width=340><tr><td>
     <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
     </td></tr></table>
+
         
     </div>
 
@@ -211,6 +213,7 @@
             document.getElementById('quizContainer').style.display = 'block';
             document.getElementById('result').innerText = '';
             updateProgress();
+            updateProgressBar();
 
             showNextQuestion();
         }
@@ -258,6 +261,13 @@
             }
         }
 
+        // 진행 상태막대 업데이트
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const progress = ((currentQuestion + 1) / numQuestions.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
         // 퀴즈 종료
         function endQuiz() {
             quizStart = 0;
@@ -274,12 +284,6 @@
             output.textContent = slider.value + '단계';
         }
 
-
-        function updateProgressBar() {
-            const progressBar = document.getElementById('progressBar');
-            const progress = ((currentQuestion + 1) / numQuestions.length) * 100;
-            progressBar.style.width = progress + '%';
-        }
         
     </script>
 
