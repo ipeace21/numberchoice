@@ -79,6 +79,20 @@
             width: 200px;
             margin-top: 10px;
         }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 0px;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: #4caf50;
+            border-radius: 0px;
+        }
+        
         
     </style>
 </head>
@@ -135,6 +149,10 @@
         </tr></table>
     </div>
 
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
         
     </div>
 
@@ -252,7 +270,15 @@
             const output = document.getElementById('currentValue');
             speedStage = 5 - Number(slider.value);
             output.textContent = slider.value + '단계';
-        }        
+        }
+
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const progress = ((currentQuestion + 1) / numQuestions.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+        
     </script>
 
 </body>
