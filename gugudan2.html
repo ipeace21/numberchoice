@@ -85,27 +85,22 @@
             background-color: #d9d9d9;
             border-radius: 0px;
             margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .progress-bar {
             width: 0%;
             height: 20px;
             background-color: #b3b3b3;
             border-radius: 0px;
-        }
-        .progress-bar-text {
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
-            height: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             color: black;
-            font-size: 1.5em;
             font-weight: bold;
         }
-        
+                
         
     </style>
 </head>
@@ -153,9 +148,7 @@
     </tr></table>
 
     <div class="progress-bar-container">
-        <div class="progress-bar" id="progressBar">
-            <div class="progress-bar-text" id="progressText">0%</div>
-        </div>
+        <div class="progress-bar" id="progressBar">0%</div>
     </div>
         
     <br><br>
@@ -279,10 +272,10 @@
             const progress = ((currentQuestion + 1) / numQuestions) * 100;
             if(currentQuestion < numQuestions) {
                 progressBar.style.width = progress + '%';
-                progressText.textContent = Math.round(progress) + '%';
+                progressBar.textContent = Math.round(progress) + '%';
             } else {
                 progressBar.style.width = '0%';
-                progressText.textContent = '0%';
+                progressBar.textContent = '0%';
             }
             
         }
