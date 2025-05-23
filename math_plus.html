@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>덧셈 문제 풀기</title>
+  <style>
+    :root {
+      --WIDTHLONG: 400px;
+      --HEIGHTLONG: 30px;
+    }
+
+    @media (max-width: 400px) {
+      :root {
+        --WIDTHLONG: 300px;
+        --HEIGHTLONG: 20px;
+      }
+      body { font-size: 5px; padding: 5px; }
+    }
+
+    @media (min-width: 401px) and (max-width: 700px) {
+      body { font-size: 8px; padding: 10px; }
+    }
+
+    @media (min-width: 701px) {
+      body { font-size: 10px; padding: 10px; }
+    }
+
+    .buttons, .slider-container {
+      margin: 10px 0;
+    }
+
+    #question {
+      font-size: 12em;
+    }
+
+    .result {
+      font-size: 12em;
+      color: red;
+    }
+
+    #progress {
+      font-size: 2.5em;
+    }
+
+    .progress-bar-container {
+      width: var(--WIDTHLONG);
+      background-color: #d9d9d9;
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: var(--HEIGHTLONG);
+      background-color: #b3b3b3;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 2em;
+      background-color: lightgray;
+      border: none;
+      border-radius: 5px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div align="center">
+  <div style="height: 6em; background-color:#b3e6ff;">
+    <span style="font-size:4em; color:blue;">덧셈 문제 풀기</span>
+  </div>
+
+  <div>
+    <label style="font-size:3.5em;">전체 몇 문제를 풀까요? </label>
+    <input type="number" id="numQuestions" min="1" max="100" value="10" style="font-size:3.5em;" />
+  </div>
+
+  <div class="slider-container">
+    <span style="font-size:3.5em;">단계</span>
+    <input type="range" min="1" max="5" step="1" value="3" id="stepSlider" oninput="updateStep()" />
+    <span id="stepValue" style="font-size:2.5em;">3단계</span>
+  </div>
+
+  <div class="slider-container">
+    <span style="font-size:3.5em;">속도</span>
+    <input type="range" min="1" max="5" step="1" value="3" id="speedSlider" oninput="updateSpeed()" />
+    <span id="speedValue" style="font-size:2.5em;">3단계 (5초)</span>
+  </div>
+
+  <div>
+    <button onclick="startQuiz()">퀴즈 시작</button>
+    <button onclick="stopQuiz()">중지</button>
+    <div id="progress">[ 현재 / 전체 ]</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+  </div>
+
+  <div id="quizContainer" style="display:none;">
+        <table><tr height="130">
+        <td style="width : 65%; text-align:center;"><div id="question"></div></td>
+        <td style="width : 5%;"></td>
+        <td style="width : 30%; text-align:center;"><div class="result" id="result"></div></td>
+        </tr></table>
+    </div> 
+</div>
+
+<script>
+  let numQuestions = 0;
+  let currentQuestion = 0;
+  let correctAnswers = 0;
+  let quizStart = false;
+  let currentTimeout;
+
+  const speedOptions = {
+    1: 20000,
+    2: 10000,
+    3: 5000,
+    4: 2000,
+    5: 1000
+  };
+
+  function updateStep() {
+    const step = document.getElementById('stepSlider').value;
+    document.getElementById('stepValue').textContent = `${step}단계`;
+  }
+
+  function updateSpeed() {
+    const speed = document.getElementById('speedSlider').value;
+    const seconds = speedOptions[speed] / 1000;
+    document.getElementById('speedValue').textContent = `${speed}단계 (${seconds}초)`;
+  }
+
+  function startQuiz() {
+    if (quizStart) return;
+    quizStart = true;
+
+    numQuestions = parseInt(document.getElementById('numQuestions').value);
+    currentQuestion = 0;
+    correctAnswers = 0;
+
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('result').innerText = '';
+    showNextQuestion();
+  }
+
+  function stopQuiz() {
+    clearTimeout(currentTimeout);
+    quizStart = false;
+
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('question').innerText = '';
+    document.getElementById('result').innerText = '';
+    document.getElementById('progress').innerText = `[ 현재 / 전체 ]`;
+
+    const bar = document.getElementById('progressBar');
+    bar.style.width = '0%';
+    bar.textContent = '0%';
+  }
+
+  function showNextQuestion() {
+    if (currentQuestion >= numQuestions) {
+      endQuiz();
+      return;
+    }
+
+    const { num1, num2, operator, correctAnswer } = generateAdditionQuestion();
+    document.getElementById('question').innerText = `${num1} ${operator} ${num2} = `;
+    document.getElementById('result').innerText = '';
+    updateProgress();
+
+    const speed = document.getElementById('speedSlider').value;
+    const duration = speedOptions[speed];
+
+    clearTimeout(currentTimeout);
+    currentTimeout = setTimeout(() => {
+      document.getElementById('result').innerText = correctAnswer;
+      setTimeout(() => {
+        currentQuestion++;
+        updateProgressBar();
+        showNextQuestion();
+      }, 1000);
+    }, duration);
+  }
+
+  function updateProgress() {
+    document.getElementById('progress').innerText = `[ ${currentQuestion + 1} / ${numQuestions} ]`;
+  }
+
+  function updateProgressBar() {
+    const bar = document.getElementById('progressBar');
+    const percent = ((currentQuestion + 1) / numQuestions) * 100;
+    bar.style.width = `${percent}%`;
+    bar.textContent = `${Math.round(percent)}%`;
+  }
+
+  function endQuiz() {
+    quizStart = false;
+    clearTimeout(currentTimeout);
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('result').innerText = `퀴즈 종료!`;
+    document.getElementById('progress').innerText = `[ 현재 / 전체 ]`;
+    document.getElementById('progressBar').style.width = '0%';
+    document.getElementById('progressBar').textContent = '0%';
+  }
+
+  function generateAdditionQuestion() {
+    const step = parseInt(document.getElementById('stepSlider').value);
+    let num1, num2;
+
+    switch (step) {
+      case 1:
+        do {
+          num1 = Math.floor(Math.random() * 8 + 1);
+          num2 = Math.floor(Math.random() * 8 + 1);
+        } while (num1 + num2 >= 10);
+        break;
+      case 2:
+        do {
+          num1 = Math.floor(Math.random() * 8 + 1);
+          num2 = Math.floor(Math.random() * 8 + 1);
+        } while (num1 + num2 < 10);
+        break;
+      case 3:
+        do {
+          num1 = Math.floor(Math.random() * 90 + 10);
+          num2 = Math.floor(Math.random() * 90 + 10);
+        } while ((num1 % 10 + num2 % 10) >= 10 || (num1 + num2) > 100);
+        break;
+      case 4:
+        do {
+          num1 = Math.floor(Math.random() * 90 + 10);
+          num2 = Math.floor(Math.random() * 90 + 10);
+        } while ((num1 % 10 + num2 % 10) < 10 || Math.floor(num1 / 10) + Math.floor(num2 / 10) >= 10);
+        break;
+      case 5:
+        do {
+          num1 = Math.floor(Math.random() * 90 + 10);
+          num2 = Math.floor(Math.random() * 90 + 10);
+        } while ((num1 % 10 + num2 % 10) < 10 || Math.floor(num1 / 10) + Math.floor(num2 / 10) < 10);
+        break;
+      default:
+        num1 = 1;
+        num2 = 1;
+    }
+
+    return { num1, num2, operator: '+', correctAnswer: num1 + num2 };
+  }
+</script>
+
+</body>
+</html>
