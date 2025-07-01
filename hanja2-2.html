@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>한자 퀴즈</title>
+  <style>
+    body {
+      font-family: '맑은 고딕', sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding: 40px;
+    }
+    #hanja {
+      font-size: 220px;
+      margin: 30px 0;
+    }
+    #answer {
+      font-size: 100px;
+      min-height: 140px; /* 고정 공간 확보 */
+      margin-bottom: 20px;
+      color: #333;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      margin: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #388E3C;
+    }
+    #stopBtn {
+      background-color: #f44336;
+    }
+    #stopBtn:hover {
+      background-color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <table align="center">
+  <tr height="50"><td><span style="font-size : 40px;">한자 퀴즈 (2-2단계)</span></td></tr>
+  
+  <tr height="230"><td><div id="hanja">?</div></td></tr>
+  <tr height="130"><td><div id="answer"></div></td></tr>
+
+  <tr><td>
+  <div>
+    <button id="startBtn" onclick="startQuiz()">퀴즈 시작</button>
+    <button id="stopBtn" onclick="stopQuiz()" style="display:none;">중지</button>
+    <br>
+    <a href="index.html">Home으로 이동하기</a>
+  </div>
+  </td></tr>
+  </table>
+
+  <script>
+    const hanjaData = [
+      ["春", "봄", "춘"], ["夏", "여름", "하"], ["秋", "가을", "추"],
+      ["冬", "겨울", "동"], ["名", "이름", "명"], ["季", "계절", "계"],
+      ["卒", "마칠", "졸"], ["兄", "맏", "형"], ["弟", "아우", "제"],
+      ["寸", "마디", "촌"], ["方", "모", "방"], ["向", "향할", "향"],
+      ["河", "물", "하"], ["兩", "두", "량"], ["上", "위", "상"],
+      ["下", "아래", "하"], ["兒", "아이", "아"], ["童", "아이", "동"],
+      ["少", "적을", "소"], ["巨", "클", "거"], ["校", "학교", "교"],
+      ["明", "밝을", "명"], ["育", "기를", "육"], ["全", "온전할", "전"],
+      ["東", "동녘", "동"], ["西", "서녘", "서"], ["南", "남녘", "남"],
+      ["北", "북녘", "북"], ["多", "많을", "다"], ["重", "무거울", "중"]
+    ];
+
+
+    let quizRunning = false;
+    let showAnswerTimer = null;
+    let nextQuestionTimer = null;
+    let currentAnswer = null;
+
+    const hanjaDiv = document.getElementById('hanja');
+    const answerDiv = document.getElementById('answer');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+
+    function startQuiz() {
+      if (quizRunning) return;
+
+      quizRunning = true;
+      startBtn.style.display = 'none';
+      stopBtn.style.display = 'inline-block';
+      nextQuestion();
+    }
+
+    function stopQuiz() {
+      quizRunning = false;
+
+      // 모든 타이머 제거
+      clearTimeout(showAnswerTimer);
+      clearTimeout(nextQuestionTimer);
+
+      // 상태 초기화
+      hanjaDiv.textContent = '?';
+      answerDiv.textContent = '';
+
+      startBtn.style.display = 'inline-block';
+      stopBtn.style.display = 'none';
+    }
+
+    function nextQuestion() {
+      if (!quizRunning) return;
+
+      hanjaDiv.textContent = '';
+      answerDiv.textContent = '';
+
+      const randomIndex = Math.floor(Math.random() * hanjaData.length);
+      currentAnswer = hanjaData[randomIndex];
+
+      hanjaDiv.textContent = currentAnswer[0];  // 한자 표시
+
+      showAnswerTimer = setTimeout(() => {
+        if (!quizRunning) return;
+        answerDiv.textContent = `${currentAnswer[1]} ... ${currentAnswer[2]}`;
+
+        nextQuestionTimer = setTimeout(() => {
+          if (quizRunning) {
+            nextQuestion();
+          }
+        }, 3000);
+
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
