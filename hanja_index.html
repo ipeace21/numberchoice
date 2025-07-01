@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>한자 퀴즈</title>
+  <style>
+    body {
+      font-family: '맑은 고딕', sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding: 40px;
+    }
+    #hanja {
+      font-size: 100px;
+      margin: 30px 0;
+    }
+    #answer {
+      font-size: 50px;
+      margin-top: 20px;
+      color: #333;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>한자 퀴즈 - 뜻과 음 말하기</h1>
+  <p>2-1 단계</p>
+
+  <div id="hanja">?</div>
+  <div id="answer"></div>
+  <button id="startBtn" onclick="startQuiz()">퀴즈 시작</button>
+
+  <script>
+    const hanjaData = [
+      ["天", "하늘", "천"],
+      ["地", "땅", "지"],
+      ["花", "꽃", "화"],
+      ["草", "풀", "초"],
+      ["赤", "붉을", "적"],
+      ["靑", "푸를", "청"],
+      ["年", "해", "년"],
+      ["色", "빛", "색"],
+      ["果", "열매", "과"],
+      ["位", "자리", "위"],
+      ["長", "긴", "장"],
+      ["短", "짧을", "단"],
+      ["前", "앞", "전"],
+      ["後", "뒤", "후"],
+      ["左", "왼", "좌"],
+      ["右", "오른", "우"],
+      ["中", "가운데", "중"],
+      ["間", "사이", "간"],
+      ["祖", "할아버지", "조"],
+      ["本", "근본", "본"],
+      ["江", "강", "강"],
+      ["海", "바다", "해"],
+      ["高", "높을", "고"],
+      ["低", "낮을", "저"],
+      ["內", "안", "내"],
+      ["外", "바깥", "외"],
+      ["男", "사내", "남"],
+      ["學", "배울", "학"],
+      ["林", "수풀", "림"],
+      ["鳥", "새", "조"]
+    ];
+
+    let currentAnswer = null;
+    let quizRunning = false;
+
+    function startQuiz() {
+      if (!quizRunning) {
+        quizRunning = true;
+        document.getElementById('startBtn').style.display = 'none';
+        nextQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      const hanjaDiv = document.getElementById('hanja');
+      const answerDiv = document.getElementById('answer');
+
+      // 초기화
+      hanjaDiv.textContent = '';
+      answerDiv.textContent = '';
+
+      // 랜덤 문제 선택
+      const randomIndex = Math.floor(Math.random() * hanjaData.length);
+      currentAnswer = hanjaData[randomIndex];
+
+      // 한자 표시
+      hanjaDiv.textContent = currentAnswer[0];
+
+      // 3초 후 뜻과 음 표시
+      setTimeout(() => {
+        answerDiv.textContent = `${currentAnswer[1]}.....${currentAnswer[2]}`;
+        
+        // 3초 후 다음 문제 자동
+        setTimeout(nextQuestion, 3000);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
