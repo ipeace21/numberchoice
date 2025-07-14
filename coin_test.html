@@ -1,125 +1,198 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>동전 던지기 비율 테스트</title>
-  </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>동전 던지기 비율 테스트</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 1rem;
+      margin: 0;
+      background-color: #f2faff;
+    }
 
+    .header-title {
+      font-size: 2rem;
+      color: blue;
+      margin-top: 1rem;
+    }
 
-  <body>
-    <div style = "text-align:center;">
-    <table style="width:100%;"><tr style="width:100%;">
-      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>동전 던지기 비율 테스트</b></td>
-      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
-    </tr></table><br>
+    .header-link {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
 
+    input[type="text"] {
+      font-size: 1.3rem;
+      padding: 0.5rem;
+      margin: 0.3rem 0;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+    }
 
-    <span style="font-size:40px;">실시 횟수 </span>
-    <input type="text" id="chow" name="chow" value="100"
-                         style = "text-align:center; font-size:40px; width:300px;
-                         border-width: 5px;"><br><br>
+    #chow {
+      font-size: 2rem;
+      width: 200px;
+      text-align: center;
+      border-width: 4px;
+    }
 
-    <table style="width:100%;">
-      <tr style="width:100%;">
-      <td style="width:10%; font-size:30px; text-align:center; vertical-align:middle;">[앞]</td>
-      <td style="width:90%;">
-      <input type="text" id="cnumber1" name="cnumber1" value = ""
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;">
-      </td></tr>
-      <tr style="width:100%;">
-      <td style="width:10%; font-size:30px; text-align:center; vertical-align:middle;">[뒤]</td>
-      <td style="width:90%;">
-      <input type="text" id="cnumber2" name="cnumber2" value = ""
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;">
-      </td></tr>
-    </table><br>
+    .result-bar {
+      width: 90%;
+      max-width: 600px;
+      font-size: 1.1rem;
+      text-align: left;
+      margin: 0.5rem auto;
+    }
 
-    <input type="text" id="cnums" name="cnums" value = " 여기에는 각각 나온 횟수가 표시됩니다."
-                         style = "font-size:22px; width:100%; color:blue;
-                         border-radius: 8px; border-width: 3px;"><br><br>
-    <input type="button" value="   동전 던지기   " onclick="choosenum()"
-                         style = "text-align:center; font-size:80px; color:red;
-                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    </div>
+    #cnums {
+      font-size: 1rem;
+      width: 90%;
+      max-width: 600px;
+      color: blue;
+      border-radius: 8px;
+      border-width: 3px;
+      margin-top: 1rem;
+    }
 
-    <div style ="font-size:20px;">
-      ** 실시 횟수를 입력하고 '동전 던지기' 버튼을 클릭하세요.<br>
-      ** 동전 던지기를 10,000,000번 실시하는 테스트에 3초 정도 걸립니다.
-    </div>
+    .label-row {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
 
+    button, input[type="button"] {
+      font-size: 1.8rem;
+      padding: 0.8rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
 
-    <div style = "font-size: 12px;"><br>
-      made by ipeace21, 2020.
-    </div>
+    .draw-button {
+      font-size: 2.2rem;
+      background-color: #ffe5e5;
+      color: red;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
 
-    <script>
+    .note {
+      font-size: 0.95rem;
+      margin-top: 2rem;
+      color: #555;
+    }
 
-      var dicenum = [0, 0];
-      var howmany = 100;
-      document.getElementById("chow").value = howmany;
-      document.getElementById("cnumber1").value = "";
-      document.getElementById("cnumber2").value = "";
-      var cnum = " 나온 횟수 ";
-      document.getElementById("cnums").value = cnum;
+    .footer {
+      font-size: 0.75rem;
+      margin-top: 1rem;
+      color: #888;
+    }
 
-
-
-      function choosenum(){
-
-        dicenum = [0, 0];
-        howmany = document.getElementById("chow").value;
-        var i = 0;
-
-        document.getElementById("cnumber1").value = ".....";
-        document.getElementById("cnumber2").value = ".....";
-        cnum = ".....";
-        document.getElementById("cnums").value = cnum;
-
-
-        while (i < howmany){
-          var howlong;
-          var randomnum;
-          var rand = Math.random();
-          randomnum = Math.floor(rand * 2) + 1;
-
-          if (randomnum == 1) {
-            dicenum[0] ++;
-          }
-          if (randomnum == 2) {
-            dicenum[1] ++;
-          }
-
-          i++;
-
-        }
-
-
-        var dice1 = dicenum[0]/howmany * 75;
-        howlong = "";
-        for (i=0;i<dice1;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber1").value = howlong;
-
-        var dice2 = dicenum[1]/howmany * 75;
-        howlong = "";
-        for (i=0;i<dice2;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber2").value = howlong;
-
-
-        cnum = " 나온 횟수 ";
-        cnum = cnum + "[앞] : " + dicenum[0] + "회   ";
-        cnum = cnum + "[뒤] : " + dicenum[1] + "회   ";
-        document.getElementById("cnums").value = cnum;
-
+    @media (max-width: 600px) {
+      .header-title {
+        font-size: 1.5rem;
       }
 
+      .draw-button {
+        font-size: 1.5rem;
+      }
 
-    </script>
+      #chow {
+        width: 150px;
+        font-size: 1.5rem;
+      }
 
-  </body>
+      .result-bar {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 상단 제목 -->
+  <div class="header-title"><b>동전 던지기 비율 테스트</b></div>
+  <br />
+
+  <!-- 횟수 입력 -->
+  <div>
+    <span style="font-size: 1.5rem;">실시 횟수</span><br />
+    <input type="text" id="chow" value="100" />
+  </div>
+
+  <!-- 결과 바 -->
+  <div class="label-row">[앞]
+  <input type="text" id="cnumber1" class="result-bar" readonly /></div>
+  <div class="label-row">[뒤]
+  <input type="text" id="cnumber2" class="result-bar" readonly /></div>
+  <br>
+  <!-- 전체 결과 -->
+  <input type="text" id="cnums" value="여기에는 각각 나온 횟수가 표시됩니다." readonly />
+
+  <!-- 버튼 -->
+  <div>
+    <input type="button" value="동전 던지기" onclick="choosenum()" class="draw-button" />
+  </div>
+
+  <!-- 설명 -->
+  <div class="note">
+    ** 실시 횟수를 입력하고 '동전 던지기' 버튼을 클릭하세요.<br />
+    ** 동전 던지기를 10,000,000번 실시하는 테스트에 3초 정도 걸립니다.
+  </div>
+
+  <!-- 하단 링크 -->
+  <div class="header-link">
+    <a href="index.html">Go to Home</a>
+  </div>
+
+  <!-- 저작자 -->
+  <div class="footer">
+    made by ipeace21, 2020.
+  </div>
+
+  <!-- 스크립트 -->
+  <script>
+    let dicenum = [0, 0];
+    let howmany = 100;
+    const chow = document.getElementById("chow");
+    const cnumber1 = document.getElementById("cnumber1");
+    const cnumber2 = document.getElementById("cnumber2");
+    const cnums = document.getElementById("cnums");
+
+    function choosenum() {
+      dicenum = [0, 0];
+      howmany = parseInt(chow.value) || 0;
+
+      cnumber1.value = ".....";
+      cnumber2.value = ".....";
+      cnums.value = "계산 중...";
+
+      for (let i = 0; i < howmany; i++) {
+        const random = Math.floor(Math.random() * 2);
+        dicenum[random]++;
+      }
+
+      const barLength = 75; // 최대 바 길이
+      const bar1 = "#".repeat(Math.floor((dicenum[0] / howmany) * barLength));
+      const bar2 = "#".repeat(Math.floor((dicenum[1] / howmany) * barLength));
+
+      cnumber1.value = bar1;
+      cnumber2.value = bar2;
+
+      cnums.value = `[앞]: ${dicenum[0]}회    [뒤]: ${dicenum[1]}회`;
+    }
+
+    // 초기화
+    document.addEventListener("DOMContentLoaded", () => {
+      chow.value = 100;
+      cnumber1.value = "";
+      cnumber2.value = "";
+      cnums.value = "여기에는 각각 나온 횟수가 표시됩니다.";
+    });
+  </script>
+</body>
 </html>
