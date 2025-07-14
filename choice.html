@@ -1,115 +1,188 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>일반 번호 추첨</title>
-  </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>일반 번호 추첨</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 1rem;
+      margin: 0;
+    }
 
+    .header-title {
+      font-size: 2rem;
+      color: blue;
+      text-align: center;
+      margin-top: 1rem;
+    }
 
-  <body>
-    <div style = "text-align:center;">
-    <table style="width:100%;"><tr style="width:100%;">
-      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>1부터 연속된 번호들 중에서 추첨하기</b></td>
-      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
-    </tr></table><br>
+    .header-link {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
 
-    <input type="text" id="tonumber" name="tonumber" value="33"
-                         style = "text-align:center; font-size: 40px;
-                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         width: 80;">
-    <span style = "font-size: 40px;">번까지 중에서 </span>
-    <input type="button" value="  추첨 번호 발생하기  " onclick="makenum()"
-                         style = "text-align:center; font-size:40px;
-                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    <input type="text" id="chow" name="chow" value="순서"
-                         style = "text-align:center; font-size:40px; width:200px;
-                         border-width: 5px;"><br><br>
-    <input type="text" id="cnumber" name="cnumber" value = "추첨된 번호"
-                         style = "text-align:center; font-size:200px; width:100%;
-                         border-width: 5px;"><br><br>
-    <input type="text" id="cnums" name="cnums" value = "여기에는 추첨된 번호들이 차례로 표시됩니다."
-                         style = "font-size:25px; width:100%;
-                         border-radius: 8px; border-width: 3px;"><br><br>
-    <input type="button" value="    번호 추첨    " onclick="choosenum()"
-                         style = "text-align:center; font-size:80px; color:red;
-                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    </div>
+    input[type="text"] {
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+      text-align: center;
+    }
 
-    <div style ="font-size:20px;">
-      ** 최대 번호를 입력하고 '추첨 번호 발생하기' 버튼을 클릭한 후에, '번호 추첨' 버튼을 한 번씩 클릭하면서 진행하세요.
-    </div>
+    input#fromnumber,
+    input#tonumber {
+      width: 60px;
+    }
 
+    input#cnumber {
+      font-size: 4rem;
+      width: 90%;
+      max-width: 600px;
+      border-width: 5px;
+    }
 
-    <div style = "font-size: 12px;"><br>
-      made by ipeace21, 2020.
-    </div>
+    input#cnums {
+      font-size: 1rem;
+      width: 90%;
+      max-width: 600px;
+    }
 
-    <script>
+    button, input[type="button"] {
+      font-size: 1.5rem;
+      padding: 0.8rem 1.2rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
 
-      var howlong = 0;
-      var allnum = [];
-      var chosennum = [];
-      var chosennumbers = [];
-      var howmany = 0;
-      var cnum = "";
+    .draw-button {
+      font-size: 2rem;
+      background-color: #ffe5e5;
+      color: red;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
 
-      function makenum(){
-          howlong = Number(document.getElementById("tonumber").value);
-          allnum = [];
-          chosennum = [];
-          chosennumbers = [];
-          for(i=0; i<howlong; i++){
-            allnum.push(i+1);
-          }
-          howmany = 0;
-          cnum = "추첨된 번호 : ";
-          document.getElementById("chow").value = "";
-          document.getElementById("cnumber").value = "";
-          document.getElementById("cnums").value = "";
+    .note {
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      color: #555;
+    }
 
-          var randomnum;
-            var i = 0;
-            while(i < howlong) {
+    .footer {
+      font-size: 0.75rem;
+      margin-top: 1rem;
+      color: #888;
+    }
 
-              var rand = Math.random();
-              randomnum = Math.floor(rand * howlong);
+    @media (max-width: 600px) {
+      .header-title {
+        font-size: 1.5rem;
+      }
 
+      .header-link {
+        font-size: 1rem;
+      }
 
-              var j = 0;
-              var k = 0;
-              for(j = 0; j < i; j++){
-                if (chosennum[j] === randomnum){
-                  k = k + 1;
-                }
-              }
-              if (k === 0){
-                chosennum[i] = randomnum;
-                chosennumbers[i] = allnum[randomnum];
-                i = i + 1;
-              }
+      input#cnumber {
+        font-size: 3rem;
+      }
 
-            }
+      .draw-button {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- 상단 제목 -->
+  <div class="header-title"><b>1부터 연속된 번호들 중에서 추첨하기</b></div>
+
+  <br>
+
+  <!-- 입력 및 버튼 영역 -->
+  <div>
+    <input type="text" id="tonumber" value="33">
+    <span style="font-size: 1.5rem;">번까지 중에서</span>
+    <input type="button" value="추첨 번호 발생하기" onclick="makenum()"><br>
+
+    <input type="text" id="chow" value="순서"><br>
+    <input type="text" id="cnumber" value="추첨된 번호"><br>
+    <input type="text" id="cnums" value="여기에는 추첨된 번호들이 차례로 표시됩니다."><br>
+
+    <input type="button" value="번호 추첨" onclick="choosenum()" class="draw-button">
+  </div>
+
+  <!-- 설명 -->
+  <div class="note">
+    ** 최대 번호를 입력하고 '추첨 번호 발생하기' 버튼을 클릭한 후에,<br>
+    '번호 추첨' 버튼을 한 번씩 클릭하면서 진행하세요.
+  </div>
+
+  <!-- 하단 링크 -->
+  <div class="header-link">
+    <a href="index.html">Go to Home</a>
+  </div>
+
+  <!-- 저작자 -->
+  <div class="footer">
+    made by ipeace21, 2020.
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let howlong = 0;
+    let allnum = [];
+    let chosennum = [];
+    let chosennumbers = [];
+    let howmany = 0;
+    let cnum = "";
+
+    function makenum() {
+      howlong = Number(document.getElementById("tonumber").value);
+      allnum = [];
+      chosennum = [];
+      chosennumbers = [];
+      for (let i = 0; i < howlong; i++) {
+        allnum.push(i + 1);
+      }
+      howmany = 0;
+      cnum = "추첨된 번호 : ";
+      document.getElementById("chow").value = "";
+      document.getElementById("cnumber").value = "";
+      document.getElementById("cnums").value = "";
+
+      let i = 0;
+      while (i < howlong) {
+        let randomnum = Math.floor(Math.random() * howlong);
+        if (!chosennum.includes(randomnum)) {
+          chosennum[i] = randomnum;
+          chosennumbers[i] = allnum[randomnum];
+          i++;
         }
+      }
+    }
 
-        function choosenum(){
-          if(howmany < howlong){
-            document.getElementById("chow").value = (howmany+1);
-            document.getElementById("cnumber").value = chosennumbers[howmany];
-            if(howmany<howlong-1){
-              cnum = cnum + chosennumbers[howmany] + ",  ";
-            } else {
-              cnum = cnum + chosennumbers[howmany]
-            }
-            document.getElementById("cnums").value = cnum;
-            howmany = howmany + 1;
+    function choosenum() {
+      if (howmany < howlong) {
+        document.getElementById("chow").value = howmany + 1;
+        document.getElementById("cnumber").value = chosennumbers[howmany];
+        cnum += (howmany < howlong - 1) ? chosennumbers[howmany] + ", " : chosennumbers[howmany];
+        document.getElementById("cnums").value = cnum;
+        howmany++;
+      }
+    }
+  </script>
 
-          }
-
-        }
-
-
-    </script>
-
-  </body>
+</body>
 </html>
