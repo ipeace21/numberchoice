@@ -1,176 +1,206 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>주사위 던지기 비율 테스트</title>
-  </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주사위 던지기 비율 테스트</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 1rem;
+      margin: 0;
+    }
 
+    .header-title {
+      font-size: 2rem;
+      color: blue;
+      text-align: center;
+      margin-top: 1rem;
+    }
 
-  <body>
-    <div style = "text-align:center;">
-    <table style="width:100%;"><tr style="width:100%;">
-      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>주사위 던지기 비율 테스트</b></td>
-      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
-    </tr></table><br>
+    .header-link {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
 
+    input[type="text"] {
+      font-size: 1.3rem;
+      padding: 0.5rem;
+      margin: 0.3rem 0;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+    }
 
-    <span style="font-size:40px;">던질 횟수 </span>
-    <input type="text" id="chow" name="chow" value="100"
-                         style = "text-align:center; font-size:40px; width:300px;
-                         border-width: 5px;"><br><br>
-    <input type="text" id="cnumber1" name="cnumber1" value = "[1]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber2" name="cnumber2" value = "[2]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber3" name="cnumber3" value = "[3]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber4" name="cnumber4" value = "[4]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber5" name="cnumber5" value = "[5]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber6" name="cnumber6" value = "[6]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br><br>
-    <input type="text" id="cnums" name="cnums" value = " 여기에는 나온 숫자들의 횟수가 표시됩니다."
-                         style = "font-size:22px; width:100%; color:blue;
-                         border-radius: 8px; border-width: 3px;"><br><br>
-    <input type="button" value="   주사위 던지기   " onclick="choosenum()"
-                         style = "text-align:center; font-size:80px; color:red;
-                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    </div>
+    #chow {
+      font-size: 2rem;
+      width: 200px;
+      text-align: center;
+      border-width: 4px;
+    }
 
-    <div style ="font-size:20px;">
-      ** 던질 횟수를 입력하고 '주사위 던지기' 버튼을 클릭하세요.<br>
-      ** 주사위를 10,000,000번 던지는 테스트에 3초 정도 걸립니다.
-    </div>
+    .result-bar {
+      width: 90%;
+      max-width: 600px;
+      font-size: 1.1rem;
+      text-align: left;
+      margin: 0.3rem auto;
+    }
 
+    #cnums {
+      font-size: 1rem;
+      width: 90%;
+      max-width: 600px;
+      color: blue;
+      border-radius: 8px;
+      border-width: 3px;
+    }
 
-    <div style = "font-size: 12px;"><br>
-      made by ipeace21, 2020.
-    </div>
+    button, input[type="button"] {
+      font-size: 1.8rem;
+      padding: 0.8rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
 
-    <script>
+    .draw-button {
+      font-size: 2.2rem;
+      background-color: #ffe5e5;
+      color: red;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
 
-      var dicenum = [0, 0, 0, 0, 0, 0];
-      var howmany = 100;
-      document.getElementById("chow").value = howmany;
+    .note {
+      font-size: 0.95rem;
+      margin-top: 2rem;
+      color: #555;
+    }
+
+    .footer {
+      font-size: 0.75rem;
+      margin-top: 1rem;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .header-title {
+        font-size: 1.5rem;
+      }
+
+      .draw-button {
+        font-size: 1.5rem;
+      }
+
+      #chow {
+        width: 150px;
+        font-size: 1.5rem;
+      }
+
+      .result-bar {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 상단 제목 -->
+  <div class="header-title"><b>주사위 던지기 비율 테스트</b></div>
+  <br />
+
+  <!-- 횟수 입력 -->
+  <div>
+    <span style="font-size: 1.5rem;">던질 횟수</span><br />
+    <input type="text" id="chow" value="100" />
+  </div>
+
+  <!-- 결과 바 -->
+<div>
+  <input type="text" id="cnumber1" class="result-bar" value="[1]" style="display:block; margin: 0.3rem auto;" />
+  <input type="text" id="cnumber2" class="result-bar" value="[2]" style="display:block; margin: 0.3rem auto;" />
+  <input type="text" id="cnumber3" class="result-bar" value="[3]" style="display:block; margin: 0.3rem auto;" />
+  <input type="text" id="cnumber4" class="result-bar" value="[4]" style="display:block; margin: 0.3rem auto;" />
+  <input type="text" id="cnumber5" class="result-bar" value="[5]" style="display:block; margin: 0.3rem auto;" />
+  <input type="text" id="cnumber6" class="result-bar" value="[6]" style="display:block; margin: 0.3rem auto;" />
+</div>
+
+  <!-- 전체 결과 -->
+  <input type="text" id="cnums" value="여기에는 나온 숫자들의 횟수가 표시됩니다." />
+
+  <!-- 버튼 -->
+  <div>
+    <input type="button" value="주사위 던지기" onclick="choosenum()" class="draw-button" />
+  </div>
+
+  <!-- 설명 -->
+  <div class="note">
+    ** 던질 횟수를 입력하고 '주사위 던지기' 버튼을 클릭하세요.<br />
+    ** 주사위를 10,000,000번 던지는 테스트에 3초 정도 걸립니다.
+  </div>
+
+  <!-- 하단 링크 -->
+  <div class="header-link">
+    <a href="index.html">Go to Home</a>
+  </div>
+
+  <!-- 저작자 -->
+  <div class="footer">
+    made by ipeace21, 2020.
+  </div>
+
+  <!-- 스크립트 -->
+  <script>
+    let dicenum = [0, 0, 0, 0, 0, 0];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("chow").value = 100;
+      resetResult();
+    });
+
+    function resetResult() {
       document.getElementById("cnumber1").value = "[1]";
       document.getElementById("cnumber2").value = "[2]";
       document.getElementById("cnumber3").value = "[3]";
       document.getElementById("cnumber4").value = "[4]";
       document.getElementById("cnumber5").value = "[5]";
       document.getElementById("cnumber6").value = "[6]";
-      var cnum = " 나온 숫자 ";
-      document.getElementById("cnums").value = cnum;
+      document.getElementById("cnums").value = "나온 숫자 결과가 여기에 표시됩니다.";
+    }
 
+    function choosenum() {
+      dicenum = [0, 0, 0, 0, 0, 0];
+      const howmany = parseInt(document.getElementById("chow").value) || 0;
 
+      resetResult();
 
-      function choosenum(){
-
-        dicenum = [0, 0, 0, 0, 0, 0];
-        howmany = document.getElementById("chow").value;
-        var i = 0;
-
-        document.getElementById("cnumber1").value = ".....";
-        document.getElementById("cnumber2").value = ".....";
-        document.getElementById("cnumber3").value = ".....";
-        document.getElementById("cnumber4").value = ".....";
-        document.getElementById("cnumber5").value = ".....";
-        document.getElementById("cnumber6").value = ".....";
-        cnum = ".....";
-        document.getElementById("cnums").value = cnum;
-
-
-        while (i < howmany){
-          var howlong;
-          var randomnum;
-          var rand = Math.random();
-          randomnum = Math.floor(rand * 6) + 1;
-
-          if (randomnum == 1) {
-            dicenum[0] ++;
-          }
-          if (randomnum == 2) {
-            dicenum[1] ++;
-          }
-          if (randomnum == 3) {
-            dicenum[2] ++;
-          }
-          if (randomnum == 4) {
-            dicenum[3] ++;
-          }
-          if (randomnum == 5) {
-            dicenum[4] ++;
-          }
-          if (randomnum == 6) {
-            dicenum[5] ++;
-          }
-
-          i++;
-
-        }
-
-
-        var dice1 = dicenum[0]/howmany * 250;
-        howlong = "";
-        for (i=0;i<dice1;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber1").value = "[1] " + howlong;
-
-        var dice2 = dicenum[1]/howmany * 250;
-        howlong = "";
-        for (i=0;i<dice2;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber2").value = "[2] " + howlong;
-
-        var dice3 = dicenum[2]/howmany * 250;
-        howlong = "";
-        for (i=0;i<dice3;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber3").value = "[3] " + howlong;
-
-        var dice4 = dicenum[3]/howmany * 250;
-        howlong = "";
-        for (i=0;i<dice4;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber4").value = "[4] " + howlong;
-
-        var dice5 = dicenum[4]/howmany * 250;
-        howlong = "";
-        for (i=0;i<dice5;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber5").value = "[5] " + howlong;
-
-        var dice6 = dicenum[5]/howmany * 250;
-        howlong = "";
-        for (i=0;i<dice6;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber6").value = "[6] " + howlong;
-
-        cnum = " 나온 숫자 ";
-        cnum = cnum + "[1] : " + dicenum[0] + "회   ";
-        cnum = cnum + "[2] : " + dicenum[1] + "회   ";
-        cnum = cnum + "[3] : " + dicenum[2] + "회   ";
-        cnum = cnum + "[4] : " + dicenum[3] + "회   ";
-        cnum = cnum + "[5] : " + dicenum[4] + "회   ";
-        cnum = cnum + "[6] : " + dicenum[5] + "회   ";
-        document.getElementById("cnums").value = cnum;
-
+      for (let i = 0; i < howmany; i++) {
+        const randomnum = Math.floor(Math.random() * 6);
+        dicenum[randomnum]++;
       }
 
+      for (let i = 0; i < 6; i++) {
+        let bar = "";
+        const length = Math.floor((dicenum[i] / howmany) * 100);
+        for (let j = 0; j < length; j++) bar += "■";
+        document.getElementById(`cnumber${i + 1}`).value = `[${i + 1}] ${bar}`;
+      }
 
-    </script>
+      const summary =
+        `나온 숫자: ` +
+        `[1]: ${dicenum[0]}회  ` +
+        `[2]: ${dicenum[1]}회  ` +
+        `[3]: ${dicenum[2]}회  ` +
+        `[4]: ${dicenum[3]}회  ` +
+        `[5]: ${dicenum[4]}회  ` +
+        `[6]: ${dicenum[5]}회`;
 
-  </body>
+      document.getElementById("cnums").value = summary;
+    }
+  </script>
+</body>
 </html>
