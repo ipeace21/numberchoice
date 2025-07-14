@@ -1,87 +1,171 @@
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Number Choice</title>
-
   <style>
     body {
       background-color: #99ddff;
-      margin: 25px 50px 25px 50px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
     }
 
-    li {
-      margin: -5px;
-      padding: -5px;
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: #003366;
+      margin-bottom: 2rem;
     }
-    
-    a:link, a:visited {
+
+    .link-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .link-column {
+      min-width: 220px;
+    }
+
+    .link-column li {
+      list-style-type: none;
+      margin: 0.5rem 0;
+    }
+
+    .link-column a {
+      display: inline-block;
+      width: 100%;
       background-color: #ccf2ff;
       color: black;
-      padding: 10px 10px;
-      text-align: center;
       text-decoration: none;
-      display: inline-block;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-align: center;
+      transition: all 0.2s;
+      box-shadow: 0 0 4px rgba(0,0,0,0.2);
     }
 
-    a:hover, a:active {
+    .link-column a:hover {
       background-color: #0073e6;
       color: white;
     }
 
+    .section-title {
+      font-size: 1.4rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .extra-links {
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+
+    .extra-links li {
+      list-style-type: none;
+      margin: 0.5rem 0;
+    }
+
+    .extra-links a {
+      display: block;
+      background-color: #ccf2ff;
+      padding: 0.6rem;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: black;
+      transition: all 0.2s;
+    }
+
+    .extra-links a:hover {
+      background-color: #0073e6;
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .link-column a {
+        font-size: 0.95rem;
+        padding: 0.5rem;
+      }
+    }
   </style>
 </head>
-
 <body>
-<h1>추첨 관련 프로그램 모음 (Javascript)</h1>
-<br>
-<div>
-  <table><tr>
-    <td style="font-size:23px; vertical-align:top;">
-      <li><a href="choice.html">일반 번호 추첨</a></li><br>
-      <li><a href="choice_continue.html">구간 번호 중복 추첨</a></li><br>
-      <li><a href="dice.html">주사위 던지기</a></li><br>
-      <li><a href="changingdice.html">변형주사위 던지기</a></li><br>
-      <li><a href="dice_test.html">주사위 던지기 비율</a></li><br>
-      <li><a href="dice_two.html">주사위 두 개 던지기</a></li><br>
-      <li><a href="coin.html">동전 던지기</a></li><br>
-      <li><a href="coin_test.html">동전 던지기 비율</a></li><br>  
-      <li><a href="rock.html">가위바위보</a></li><br>
-      <li><a href="rock_test.html">가위바위보 비율</a></li><br>
-      <li><a href="yut.html">윷놀이</a></li><br>
-      <li><a href="yut_test.html">윷놀이 비율</a></li><br>
-    </td>
-    <td style="width:60px;"></td>
-    <td style="font-size:23px; vertical-align:top;">
-      <li><a href="hailstone.html">우박수 구하기</a></li><br>
-      <li><a href="hailstone_test.html">최대 우박수 찾기</a></li><br>
-      <li><a href="streams.html">스트림스 번호 추첨</a></li><br>
-      <li><a href="timer.html">타이머</a></li><br>
-      <li><a href="baseball.html">숫자야구 게임</a></li><br>
-      <li><a href="bingo.html">고정 숫자 빙고</a></li><br>
-      <li><a href="bingo_m.html">일반 빙고</a></li><br>
-      <li><a href="https://ipeace21.github.io/omok/omokv05.html">오목 게임</a></li><br>
-    </td>
-    <td style="width:60px;"></td>
-    <td style="font-size:23px; vertical-align:top;">
-      <li><a href="math_plus.html">덧셈 문제 풀기</a></li><br>
-      <li><a href="math_minus.html">뺄셈 문제 풀기</a></li><br>
-      <li><a href="gugudan2.html">구구단 문제 풀기</a></li><br>
-      <li><a href="hanja_index.html">한자 퀴즈(2-1)</a></li><br>
-      <li><a href="hanja2-2.html">한자 퀴즈(2-2)</a></li><br>
-    </td>
-    </tr></table>
-</div>
-<br><br>
-<div style="font-size:23px;">
-  *** 기타 프로그램 ***<br><br>
-  <li><a href="https://ipeace21.github.io/ctube">유투브 영상을 전체화면으로 바로 볼 수 있는 주소로 변환하기</a></li><br>
-  <li><a href="gospel.html">인생을 참되게 이해할 수 있는 좋은 소식</a></li><br>
-  <li><a href="https://ipeace21.github.io/fat">진리 탐구 학습</a></li><br><br>
-  *** 사이트 링크 ***<br><br>
-  <li><a href="https://ipeace21.pythonanywhere.com">하나님의 말씀 묵상</a></li><br>
-  <li><a href="https://ipeace21.pythonanywhere.com/stools">도구 모음</a></li><br>
-</div><br><br>
-<div style="font-size:15px;">
-  made by ipeace21 for Christ
-</div>
+
+  <h1>추첨 관련 프로그램 모음 (Javascript)</h1>
+
+  <div class="link-group">
+    <ul class="link-column">
+      <li><a href="choice.html">일반 번호 추첨</a></li>
+      <li><a href="choice_continue.html">구간 번호 중복 추첨</a></li>
+      <li><a href="dice.html">주사위 던지기</a></li>
+      <li><a href="changingdice.html">변형주사위 던지기</a></li>
+      <li><a href="dice_test.html">주사위 던지기 비율</a></li>
+      <li><a href="dice_two.html">주사위 두 개 던지기</a></li>
+      <li><a href="coin.html">동전 던지기</a></li>
+      <li><a href="coin_test.html">동전 던지기 비율</a></li>  
+      <li><a href="rock.html">가위바위보</a></li>
+      <li><a href="rock_test.html">가위바위보 비율</a></li>
+      <li><a href="yut.html">윷놀이</a></li>
+      <li><a href="yut_test.html">윷놀이 비율</a></li>
+    </ul>
+
+    <ul class="link-column">
+      <li><a href="hailstone.html">우박수 구하기</a></li>
+      <li><a href="hailstone_test.html">최대 우박수 찾기</a></li>
+      <li><a href="streams.html">스트림스 번호 추첨</a></li>
+      <li><a href="timer.html">타이머</a></li>
+      <li><a href="baseball.html">숫자야구 게임</a></li>
+      <li><a href="bingo.html">고정 숫자 빙고</a></li>
+      <li><a href="bingo_m.html">일반 빙고</a></li>
+      <li><a href="https://ipeace21.github.io/omok/omokv05.html">오목 게임</a></li>
+    </ul>
+
+    <ul class="link-column">
+      <li><a href="math_plus.html">덧셈 문제 풀기</a></li>
+      <li><a href="math_minus.html">뺄셈 문제 풀기</a></li>
+      <li><a href="gugudan2.html">구구단 문제 풀기</a></li>
+      <li><a href="hanja_index.html">한자 퀴즈(2-1)</a></li>
+      <li><a href="hanja2-2.html">한자 퀴즈(2-2)</a></li>
+    </ul>
+  </div>
+
+  <div class="section-title">*** 기타 프로그램 ***</div>
+  <div class="extra-links">
+    <ul>
+      <li><a href="https://ipeace21.github.io/ctube">유투브 영상을 전체화면으로 변환</a></li>
+      <li><a href="gospel.html">인생을 참되게 이해할 수 있는 좋은 소식</a></li>
+      <li><a href="https://ipeace21.github.io/fat">진리 탐구 학습</a></li>
+    </ul>
+  </div>
+
+  <div class="section-title">*** 사이트 링크 ***</div>
+  <div class="extra-links">
+    <ul>
+      <li><a href="https://ipeace21.pythonanywhere.com">하나님의 말씀 묵상</a></li>
+      <li><a href="https://ipeace21.pythonanywhere.com/stools">도구 모음</a></li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    made by ipeace21 for Christ
+  </div>
+
 </body>
 </html>
