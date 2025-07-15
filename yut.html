@@ -1,154 +1,235 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>윷놀이</title>
-  </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>윷놀이</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 1rem;
+      background-color: #f9f9ff;
+    }
 
+    .header-title {
+      font-size: 2rem;
+      color: blue;
+      margin: 1rem 0;
+    }
 
-  <body>
-    <div style = "text-align:center;">
-    <table style="width:100%;"><tr style="width:100%;">
-      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>윷놀이</b></td>
-      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
-    </tr></table><br>
+    #chow {
+      font-size: 1.5rem;
+      width: 150px;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 5px;
+      margin: 0.5rem;
+    }
 
+    .reset-button {
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      margin-left: 1rem;
+      border-radius: 8px;
+      background-color: #eee;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      border: none;
+      cursor: pointer;
+    }
 
-    <span style="font-size:40px;">실시 횟수 </span>
-    <input type="text" id="chow" name="chow" value="횟수"
-                         style = "text-align:center; font-size:40px; width:200px;
-                         border-width: 5px;">
-    <span style="margin-left:50px;">     </span>
-    <input type="button" value="실시 횟수 초기화" onclick="initNum()"
-                         style = "text-align:center; font-size:40px; color:black;
-                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
+    .main-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
 
+    #cnumber {
+      font-size: 5rem;
+      width: 250px;
+      text-align: center;
+      border: 3px solid #999;
+      border-radius: 10px;
+      margin: 1rem;
+    }
 
-    <table style="margin:0; padding:0;"><tr>
-      <td style="text-align:center; width:65%;">
-      <input type="text" id="cnumber" name="cnumber" value = "준비"
-                         style = "text-align:center; font-size:240px; width:90%;
-                         border-width: 5px;">
-      </td>
-      <td style="text-align:center; width:35%;">
-      <img src="Yut_O.jpg" alt="윷가락O"
-           id="rockimg1" name="rockimg1" style="vertical-align: middle; width:60px;">
-      <img src="Yut_X.jpg" alt="윷가락X"
-           id="rockimg2" name="rockimg2" style="vertical-align: middle; width:60px;">
-      <img src="Yut_O.jpg" alt="윷가락O"
-           id="rockimg3" name="rockimg3" style="vertical-align: middle; width:60px;">
-      <img src="Yut_X.jpg" alt="윷가락X"
-           id="rockimg4" name="rockimg4" style="vertical-align: middle; width:60px;">
-      </td>
-    </tr></table><br>
-    <input type="text" id="cnums" name="cnums" value = "여기에 나온 차례대로 표시됩니다."
-                         style = "font-size:25px; width:100%;
-                         border-radius: 8px; border-width: 3px;"><br><br>
-    <input type="button" value="   윷가락 던지기   " onclick="choosenum()"
-                         style = "text-align:center; font-size:80px; color:red;
-                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    </div>
+    .yut-images {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-    <div style ="font-size:20px;">
-      ** '윷가락 던지기' 버튼을 한 번씩 클릭하면서 진행하세요.
-    </div>
+    .yut-images img {
+      width: 60px;
+    }
 
+    #cnums {
+      font-size: 1.1rem;
+      width: 90%;
+      max-width: 700px;
+      color: blue;
+      border-radius: 8px;
+      border-width: 3px;
+      padding: 0.5rem;
+      margin: 1rem auto;
+      display: block;
+    }
 
-    <div style = "font-size: 12px;"><br>
-      made by ipeace21, 2020.
-    </div>
+    .play-button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      color: red;
+      background-color: #ffe5e5;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      margin: 1rem 0;
+    }
 
-    <script>
+    .note {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 2rem;
+    }
 
-      var howmany = 0;
-      var cnum = "나온 차례 : ";
+    .footer {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 2rem;
+    }
+
+    .home-link {
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    .home-link a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      #cnumber {
+        font-size: 3rem;
+        width: 200px;
+      }
+
+      .yut-images img {
+        width: 50px;
+      }
+
+      .play-button {
+        font-size: 1.5rem;
+      }
+
+      #chow {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header-title"><b>윷놀이</b></div>
+
+  <!-- 횟수 입력 -->
+  <div>
+    <span style="font-size: 1.3rem;">실시 횟수</span>
+    <input type="text" id="chow" value="0" /><br>
+    <input type="button" class="reset-button" value="실시 횟수 초기화" onclick="initNum()" />
+  </div>
+
+  <!-- 메인 표시 -->
+  <div class="main-display">
+    <input type="text" id="cnumber" value="준비" readonly />
+  </div>
+
+  <!-- 윷 이미지 -->
+  <div class="yut-images">
+    <img src="Yut_O.jpg" alt="윷가락1" id="rockimg1" />
+    <img src="Yut_X.jpg" alt="윷가락2" id="rockimg2" />
+    <img src="Yut_O.jpg" alt="윷가락3" id="rockimg3" />
+    <img src="Yut_X.jpg" alt="윷가락4" id="rockimg4" />
+  </div>
+
+  <!-- 결과 텍스트 -->
+  <input type="text" id="cnums" value="여기에 나온 차례대로 표시됩니다." readonly />
+
+  <!-- 실행 버튼 -->
+  <div>
+    <input type="button" class="play-button" value="윷가락 던지기" onclick="choosenum()" />
+  </div>
+
+  <!-- 설명 -->
+  <div class="note">
+    ** '윷가락 던지기' 버튼을 클릭해서 결과를 확인하세요.
+  </div>
+
+  <!-- 하단 -->
+  <div class="footer">made by ipeace21, 2020.</div>
+  <div class="home-link"><a href="index.html">Go to Home</a></div>
+
+  <!-- JavaScript -->
+  <script>
+    let howmany = 0;
+    let cnum = "나온 차례 : ";
+
+    window.onload = () => {
       document.getElementById("chow").value = howmany;
       document.getElementById("cnumber").value = "준비";
       document.getElementById("cnums").value = cnum;
+      resetYut();
+    };
+
+    function resetYut() {
       document.getElementById("rockimg1").src = "Yut_O.jpg";
       document.getElementById("rockimg2").src = "Yut_X.jpg";
       document.getElementById("rockimg3").src = "Yut_O.jpg";
       document.getElementById("rockimg4").src = "Yut_X.jpg";
+    }
 
+    function initNum() {
+      howmany = 0;
+      cnum = "나온 차례 : ";
+      document.getElementById("chow").value = howmany;
+      document.getElementById("cnumber").value = "준비";
+      document.getElementById("cnums").value = cnum;
+      resetYut();
+    }
 
-      function initNum(){
-        howmany = 0;
-        document.getElementById("chow").value = howmany;
-        document.getElementById("cnumber").value = "준비";
-        cnum = "나온 차례 : ";
-        document.getElementById("cnums").value = cnum;
-        document.getElementById("rockimg1").src = "Yut_O.jpg";
-        document.getElementById("rockimg2").src = "Yut_X.jpg";
-        document.getElementById("rockimg3").src = "Yut_O.jpg";
-        document.getElementById("rockimg4").src = "Yut_X.jpg";
-      }
+    function choosenum() {
+      const outcomes = ["도", "개", "걸", "윷", "모"];
+      const yutCombos = [
+        ["X", "O", "O", "O"],
+        ["X", "X", "O", "O"],
+        ["X", "X", "X", "O"],
+        ["X", "X", "X", "X"],
+        ["O", "O", "O", "O"]
+      ];
 
+      const randomnum = Math.floor(Math.random() * 5);
+      const outcome = outcomes[randomnum];
+      const combo = yutCombos[randomnum];
 
-      function choosenum(){
+      howmany++;
+      document.getElementById("chow").value = howmany;
+      document.getElementById("cnumber").value = outcome;
 
-        var randomnum;
-        var rand = Math.random();
-        randomnum = Math.floor(rand * 5);
+      document.getElementById("rockimg1").src = `Yut_${combo[0]}.jpg`;
+      document.getElementById("rockimg2").src = `Yut_${combo[1]}.jpg`;
+      document.getElementById("rockimg3").src = `Yut_${combo[2]}.jpg`;
+      document.getElementById("rockimg4").src = `Yut_${combo[3]}.jpg`;
 
-        howmany++;
-        document.getElementById("chow").value = howmany;
+      cnum += outcome + ", ";
+      document.getElementById("cnums").value = cnum;
+    }
+  </script>
 
-        if (randomnum == 0){
-          document.getElementById("cnumber").value = "도";
-          document.getElementById("rockimg1").src = "Yut_X.jpg";
-          document.getElementById("rockimg2").src = "Yut_O.jpg";
-          document.getElementById("rockimg3").src = "Yut_O.jpg";
-          document.getElementById("rockimg4").src = "Yut_O.jpg";
-          cnum = cnum + "도" + ",  ";
-          document.getElementById("cnums").value = cnum;
-        }
-
-        if (randomnum == 1){
-          document.getElementById("cnumber").value = "개";
-          document.getElementById("rockimg1").src = "Yut_X.jpg";
-          document.getElementById("rockimg2").src = "Yut_X.jpg";
-          document.getElementById("rockimg3").src = "Yut_O.jpg";
-          document.getElementById("rockimg4").src = "Yut_O.jpg";
-          cnum = cnum + "개" + ",  ";
-          document.getElementById("cnums").value = cnum;
-        }
-
-        if (randomnum == 2){
-          document.getElementById("cnumber").value = "걸";
-          document.getElementById("rockimg1").src = "Yut_X.jpg";
-          document.getElementById("rockimg2").src = "Yut_X.jpg";
-          document.getElementById("rockimg3").src = "Yut_X.jpg";
-          document.getElementById("rockimg4").src = "Yut_O.jpg";
-          cnum = cnum + "걸" + ",  ";
-          document.getElementById("cnums").value = cnum;
-        }
-
-        if (randomnum == 3){
-          document.getElementById("cnumber").value = "윷";
-          document.getElementById("rockimg1").src = "Yut_X.jpg";
-          document.getElementById("rockimg2").src = "Yut_X.jpg";
-          document.getElementById("rockimg3").src = "Yut_X.jpg";
-          document.getElementById("rockimg4").src = "Yut_X.jpg";
-          cnum = cnum + "윷" + ",  ";
-          document.getElementById("cnums").value = cnum;
-        }
-
-        if (randomnum == 4){
-          document.getElementById("cnumber").value = "모";
-          document.getElementById("rockimg1").src = "Yut_O.jpg";
-          document.getElementById("rockimg2").src = "Yut_O.jpg";
-          document.getElementById("rockimg3").src = "Yut_O.jpg";
-          document.getElementById("rockimg4").src = "Yut_O.jpg";
-          cnum = cnum + "모" + ",  ";
-          document.getElementById("cnums").value = cnum;
-        }
-
-
-      }
-
-
-    </script>
-
-  </body>
+</body>
 </html>
