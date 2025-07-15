@@ -1,161 +1,166 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>윷놀이 비율 테스트</title>
-  </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>윷놀이 비율 테스트</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 1rem;
+      background-color: #f9f9ff;
+    }
 
+    .header-title {
+      font-size: 2rem;
+      color: blue;
+      margin: 1rem 0;
+    }
 
-  <body>
-    <div style = "text-align:center;">
-    <table style="width:100%;"><tr style="width:100%;">
-      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>윷놀이 비율 테스트</b></td>
-      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
-    </tr></table><br>
+    #chow {
+      font-size: 1.5rem;
+      width: 200px;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
 
+    .bar-row {
+      display: flex;
+      align-items: center;
+      margin: 0.4rem 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-    <span style="font-size:40px;">던질 횟수 </span>
-    <input type="text" id="chow" name="chow" value="100"
-                         style = "text-align:center; font-size:40px; width:300px;
-                         border-width: 5px;"><br><br>
-    <input type="text" id="cnumber1" name="cnumber1" value = "[도]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber2" name="cnumber2" value = "[개]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber3" name="cnumber3" value = "[걸]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber4" name="cnumber4" value = "[윷]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br>
-    <input type="text" id="cnumber5" name="cnumber5" value = "[모]"
-                         style = "text-align:left; font-size:30px; width:100%;
-                         border-width: 2px;"><br><br>
-    <input type="text" id="cnums" name="cnums" value = " 여기에는 나온 횟수가 표시됩니다."
-                         style = "font-size:22px; width:100%; color:blue;
-                         border-radius: 8px; border-width: 3px;"><br><br>
-    <input type="button" value="   윷가락 던지기   " onclick="choosenum()"
-                         style = "text-align:center; font-size:80px; color:red;
-                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    </div>
+    .label {
+      width: 60px;
+      font-size: 1.2rem;
+      text-align: right;
+      margin-right: 0.5rem;
+    }
 
-    <div style ="font-size:20px;">
-      ** 던질 횟수를 입력하고 '윷가락 던지기' 버튼을 클릭하세요.<br>
-      ** 윷가락을 10,000,000번 던지는 테스트에 3초 정도 걸립니다.
-    </div>
+    .bar-input {
+      flex: 1;
+      font-size: 1.2rem;
+      border: 2px solid #999;
+      border-radius: 4px;
+      padding-left: 0.5rem;
+    }
 
+    #cnums {
+      font-size: 1rem;
+      width: 90%;
+      max-width: 800px;
+      color: blue;
+      border-radius: 8px;
+      border-width: 3px;
+      padding: 0.5rem;
+      margin: 1rem auto;
+      display: block;
+    }
 
-    <div style = "font-size: 12px;"><br>
-      made by ipeace21, 2020.
-    </div>
+    .play-button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      color: red;
+      background-color: #ffe5e5;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      margin: 1rem 0;
+    }
 
-    <script>
+    .note {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 2rem;
+    }
 
-      var dicenum = [0, 0, 0, 0, 0];
-      var howmany = 100;
-      document.getElementById("chow").value = howmany;
-      document.getElementById("cnumber1").value = "[도]";
-      document.getElementById("cnumber2").value = "[개]";
-      document.getElementById("cnumber3").value = "[걸]";
-      document.getElementById("cnumber4").value = "[윷]";
-      document.getElementById("cnumber5").value = "[모]";
-      var cnum = " 나온 횟수 ";
-      document.getElementById("cnums").value = cnum;
+    .footer {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 2rem;
+    }
 
+    .home-link {
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
 
+    .home-link a {
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-title"><b>윷놀이 비율 테스트</b></div>
+  <div>
+    <span style="font-size: 1.3rem;">던질 횟수</span><br />
+    <input type="text" id="chow" value="100" />
+  </div>
 
-      function choosenum(){
+  <div class="bar-row"><div class="label">[도]</div><input type="text" id="cnumber1" class="bar-input" value="" readonly></div>
+  <div class="bar-row"><div class="label">[개]</div><input type="text" id="cnumber2" class="bar-input" value="" readonly></div>
+  <div class="bar-row"><div class="label">[걸]</div><input type="text" id="cnumber3" class="bar-input" value="" readonly></div>
+  <div class="bar-row"><div class="label">[윷]</div><input type="text" id="cnumber4" class="bar-input" value="" readonly></div>
+  <div class="bar-row"><div class="label">[모]</div><input type="text" id="cnumber5" class="bar-input" value="" readonly></div>
 
-        dicenum = [0, 0, 0, 0, 0];
-        howmany = document.getElementById("chow").value;
-        var i = 0;
+  <input type="text" id="cnums" value="여기에는 나온 횟수가 표시됩니다." readonly />
 
-        document.getElementById("cnumber1").value = ".....";
-        document.getElementById("cnumber2").value = ".....";
-        document.getElementById("cnumber3").value = ".....";
-        document.getElementById("cnumber4").value = ".....";
-        document.getElementById("cnumber5").value = ".....";
-        cnum = ".....";
-        document.getElementById("cnums").value = cnum;
+  <div>
+    <input type="button" class="play-button" value="윷가락 던지기" onclick="choosenum()" />
+  </div>
 
+  <div class="note">
+    ** 던질 횟수를 입력하고 '윷가락 던지기' 버튼을 클릭하세요.<br />
+    ** 윷가락을 10,000,000번 던지는 테스트에 3초 정도 걸립니다.
+  </div>
 
-        while (i < howmany){
-          var howlong;
-          var randomnum;
-          var rand = Math.random();
-          randomnum = Math.floor(rand * 5) + 1;
+  <div class="footer">made by ipeace21, 2020.</div>
+  <div class="home-link"><a href="index.html">Go to Home</a></div>
 
-          if (randomnum == 1) {
-            dicenum[0] ++;
-          }
-          if (randomnum == 2) {
-            dicenum[1] ++;
-          }
-          if (randomnum == 3) {
-            dicenum[2] ++;
-          }
-          if (randomnum == 4) {
-            dicenum[3] ++;
-          }
-          if (randomnum == 5) {
-            dicenum[4] ++;
-          }
+  <script>
+    let dicenum = [0, 0, 0, 0, 0];
+    let howmany = 100;
+    document.getElementById("chow").value = howmany;
+    const labels = ["", "", "", "", ""];
 
-          i++;
+    function choosenum() {
+      dicenum = [0, 0, 0, 0, 0];
+      howmany = parseInt(document.getElementById("chow").value);
+      let i = 0;
 
-        }
+      for (let j = 1; j <= 5; j++) {
+        document.getElementById("cnumber" + j).value = ".....";
+      }
+      document.getElementById("cnums").value = ".....";
 
-
-        var dice1 = dicenum[0]/howmany * 184;
-        howlong = "";
-        for (i=0;i<dice1;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber1").value = "[도] " + howlong;
-
-        var dice2 = dicenum[1]/howmany * 184;
-        howlong = "";
-        for (i=0;i<dice2;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber2").value = "[개] " + howlong;
-
-        var dice3 = dicenum[2]/howmany * 184;
-        howlong = "";
-        for (i=0;i<dice3;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber3").value = "[걸] " + howlong;
-
-        var dice4 = dicenum[3]/howmany * 184;
-        howlong = "";
-        for (i=0;i<dice4;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber4").value = "[윷] " + howlong;
-
-        var dice5 = dicenum[4]/howmany * 184;
-        howlong = "";
-        for (i=0;i<dice5;i++){
-          howlong = howlong + "#";
-        }
-        document.getElementById("cnumber5").value = "[모] " + howlong;
-
-
-        cnum = " 나온 횟수 ";
-        cnum = cnum + "[도] : " + dicenum[0] + "회   ";
-        cnum = cnum + "[개] : " + dicenum[1] + "회   ";
-        cnum = cnum + "[걸] : " + dicenum[2] + "회   ";
-        cnum = cnum + "[윷] : " + dicenum[3] + "회   ";
-        cnum = cnum + "[모] : " + dicenum[4] + "회   ";
-        document.getElementById("cnums").value = cnum;
-
+      while (i < howmany) {
+        const randomnum = Math.floor(Math.random() * 5);
+        dicenum[randomnum]++;
+        i++;
       }
 
+      for (let j = 0; j < 5; j++) {
+        let bar = "";
+        let length = dicenum[j] / howmany * 150;
+        for (let k = 0; k < length; k++) bar += "#";
+        document.getElementById("cnumber" + (j + 1)).value = `${labels[j]} ` + bar;
+      }
 
-    </script>
-
-  </body>
+      let result = "나온 횟수 ";
+      for (let j = 0; j < 5; j++) {
+        result += `[${labels[j]}]: ${dicenum[j]}회   `;
+      }
+      document.getElementById("cnums").value = result;
+    }
+  </script>
+</body>
 </html>
