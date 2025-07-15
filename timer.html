@@ -1,102 +1,175 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>타이머</title>
-  </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>타이머</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 1rem;
+      background-color: #f9f9ff;
+    }
 
+    .header-title {
+      font-size: 2rem;
+      color: blue;
+      margin: 1rem 0;
+    }
 
-  <body>
-    <div style = "text-align:center;">
-    <table style="width:100%;"><tr style="width:100%;">
-      <td style = "width:80%; text-align:left; font-size:40px; color:blue;"><b>타이머</b></td>
-      <td style = "width:20%; text-align:right; font-size:30px;"><a href="index.html">Go to Home</a></td>
-    </tr></table><br>
+    #tonumber {
+      font-size: 1.5rem;
+      width: 80px;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 5px;
+      margin: 1rem 0.5rem;
+    }
 
-    <input type="text" id="tonumber" name="tonumber" value="5"
-                         style = "text-align:center; font-size: 40px;
-                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         width: 80;">
-    <span style = "font-size: 40px;">분 </span>
-    <input type="button" value="  타이머 준비  " onclick="timerready()"
-                         style = "text-align:center; font-size:40px;
-                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;">
-    <span style = "font-size: 40px;">....</span>
-    <input type="button" value="  타이머 중지  " onclick="timerstop()"
-                         style = "text-align:center; font-size:40px;
-                         box-shadow: 0 0 4px 2px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    <input type="text" id="cnumber" name="cnumber" value = "남은 시간"
-                         style = "text-align:center; font-size:200px; width:100%;
-                         border-width: 5px;"><br><br>
-    <input type="button" value="    타이머 시작    " onclick="timerstart()"
-                         style = "text-align:center; font-size:80px; color:red;
-                         box-shadow: 0 0 4px 4px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.19);
-                         border-radius: 5px;"><br><br>
-    </div>
+    .small-button {
+      font-size: 1.2rem;
+      padding: 0.6rem 1rem;
+      background-color: #eee;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      margin: 0.5rem;
+    }
 
-    <div style ="font-size:20px;">
-      ** 타이머 시간을 입력하고 '타이머 준비' 버튼을 클릭한 후, '타이머 시작' 버튼을 클릭하세요.<br>
-      ** [주의] '타이머 시작' 버튼을 계속해서 클릭하지 마세요.<br>
-      ** 타이머가 정상적으로 작동하지 않을 때는 'F5' 키를 눌러서 프로그램을 새로 시작하세요.<br>
-    </div>
+    .main-timer {
+      font-size: 6rem;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      border: 3px solid #999;
+      border-radius: 10px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: block;
+    }
 
+    .start-button {
+      font-size: 2.5rem;
+      padding: 1rem 2.5rem;
+      color: red;
+      background-color: #ffe5e5;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      margin: 1rem 0;
+    }
 
-    <div style = "font-size: 12px;"><br>
-      made by ipeace21, 2020.
-    </div>
+    .note {
+      font-size: 1rem;
+      color: #555;
+      margin-top: 2rem;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
 
+    .footer {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 2rem;
+    }
 
-    <script>
+    .home-link {
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
 
-      var howlong = 5;
-      var myVar;
-      var mm = 4;
-      var ss = 60;
+    .home-link a {
+      text-decoration: none;
+      color: #333;
+    }
 
-      function myTimer() {
-
-        ss = ss - 1;
-
-        if (mm == 0 && ss == 0){
-          clearInterval(myVar);
-          document.getElementById("cnumber").value = "Time Out";
-          return;
-        }
-
-        if (ss == -1) {
-          mm =  mm - 1;
-          ss = 59;
-        }
-
-        if (ss < 10) {
-          document.getElementById("cnumber").value = mm + " : 0" + ss;
-        } else {
-          document.getElementById("cnumber").value = mm + " : " + ss;
-        }
+    @media (max-width: 600px) {
+      .main-timer {
+        font-size: 3rem;
       }
 
-
-      function timerready(){
-          clearInterval(myVar);
-          howlong = document.getElementById("tonumber").value;
-          mm = howlong - 1;
-          ss = 60;
-          document.getElementById("cnumber").value = howlong + " : 00";
+      .start-button {
+        font-size: 2rem;
       }
 
+      #tonumber {
+        width: 60px;
+      }
+    }
+  </style>
+</head>
 
-      function timerstop(){
-          clearInterval(myVar);
+<body>
+  <div class="header-title"><b>타이머</b></div>
+
+  <div>
+    <input type="text" id="tonumber" value="5" />
+    <span style="font-size: 1.3rem;">분</span><br />
+
+    <input type="button" class="small-button" value="타이머 준비" onclick="timerready()" />
+    <input type="button" class="small-button" value="타이머 중지" onclick="timerstop()" />
+  </div>
+
+  <input type="text" id="cnumber" class="main-timer" value="남은 시간" readonly />
+
+  <input type="button" class="start-button" value="타이머 시작" onclick="timerstart()" />
+
+  <div class="note">
+    <p>** 타이머 시간을 입력하고 '타이머 준비' 버튼을 누른 다음, '타이머 시작'을 클릭하세요.</p>
+    <p>** <b>[주의]</b> '타이머 시작' 버튼을 반복해서 누르지 마세요.</p>
+    <p>** 타이머가 작동하지 않을 경우 <b>F5</b> 키를 눌러 새로고침하세요.</p>
+  </div>
+
+  <div class="footer">made by ipeace21, 2020.</div>
+  <div class="home-link"><a href="index.html">Go to Home</a></div>
+
+  <script>
+    let howlong = 5;
+    let myVar;
+    let mm = 4;
+    let ss = 60;
+
+    function myTimer() {
+      ss--;
+
+      if (mm === 0 && ss === 0) {
+        clearInterval(myVar);
+        document.getElementById("cnumber").value = "Time Out";
+        return;
       }
 
-
-      function timerstart(){
-          myVar = setInterval(myTimer, 1000);
+      if (ss === -1) {
+        mm--;
+        ss = 59;
       }
 
+      const timeString = ss < 10 ? mm + " : 0" + ss : mm + " : " + ss;
+      document.getElementById("cnumber").value = timeString;
+    }
 
-    </script>
+    function timerready() {
+      clearInterval(myVar);
+      howlong = parseInt(document.getElementById("tonumber").value) || 1;
+      mm = howlong - 1;
+      ss = 60;
+      document.getElementById("cnumber").value = howlong + " : 00";
+    }
 
-  </body>
+    function timerstop() {
+      clearInterval(myVar);
+    }
+
+    function timerstart() {
+      clearInterval(myVar);  // 기존 타이머 중복 방지
+      myVar = setInterval(myTimer, 1000);
+    }
+  </script>
+</body>
 </html>
