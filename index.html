@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Number Choice</title>
+  
 <style>
-  body {
+  
+body {
   background-color: #99ddff;
   font-family: Arial, sans-serif;
   margin: 0;
@@ -23,18 +25,14 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
   gap: 2rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .link-column {
   min-width: 220px;
-  margin: 0 auto;
-}
-
-.link-column ul {
-  padding-left: 0;
-  text-align: center;
 }
 
 .link-column li {
@@ -70,6 +68,8 @@ h1 {
 .extra-links {
   max-width: 600px;
   margin: 1rem auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .extra-links li {
@@ -101,10 +101,13 @@ h1 {
   color: #333;
 }
 
-/* 반응형 스타일 */
 @media (max-width: 600px) {
   h1 {
     font-size: 1.5rem;
+  }
+
+  .link-column {
+    min-width: 100%;
   }
 
   .link-column a {
@@ -113,15 +116,10 @@ h1 {
   }
 
   .link-group {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .link-column {
-    width: 100%;
-    max-width: 300px;
+    padding: 0 1rem;
   }
 }
+
 </style>
 
 </head>
