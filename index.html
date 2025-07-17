@@ -4,107 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Number Choice</title>
-  <style>
-    body {
-      background-color: #99ddff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 2rem;
-    }
+<style>
+  body {
+  background-color: #99ddff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
 
-    h1 {
-      font-size: 2rem;
-      text-align: center;
-      color: #003366;
-      margin-bottom: 2rem;
-    }
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: #003366;
+  margin-bottom: 2rem;
+}
 
-    .link-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
+.link-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+}
 
-    .link-column {
-      min-width: 220px;
-    }
+.link-column {
+  min-width: 220px;
+  margin: 0 auto;
+}
 
-    .link-column li {
-      list-style-type: none;
-      margin: 0.5rem 0;
-    }
+.link-column ul {
+  padding-left: 0;
+  text-align: center;
+}
 
-    .link-column a {
-      display: inline-block;
-      width: 100%;
-      background-color: #ccf2ff;
-      color: black;
-      text-decoration: none;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      text-align: center;
-      transition: all 0.2s;
-      box-shadow: 0 0 4px rgba(0,0,0,0.2);
-    }
+.link-column li {
+  list-style-type: none;
+  margin: 0.5rem 0;
+}
 
-    .link-column a:hover {
-      background-color: #0073e6;
-      color: white;
-    }
+.link-column a {
+  display: inline-block;
+  width: 100%;
+  background-color: #ccf2ff;
+  color: black;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
 
-    .section-title {
-      font-size: 1.4rem;
-      margin-top: 3rem;
-      text-align: center;
-    }
+.link-column a:hover {
+  background-color: #0073e6;
+  color: white;
+}
 
-    .extra-links {
-      max-width: 600px;
-      margin: 1rem auto;
-    }
+.section-title {
+  font-size: 1.4rem;
+  margin-top: 3rem;
+  text-align: center;
+}
 
-    .extra-links li {
-      list-style-type: none;
-      margin: 0.5rem 0;
-    }
+.extra-links {
+  max-width: 600px;
+  margin: 1rem auto;
+}
 
-    .extra-links a {
-      display: block;
-      background-color: #ccf2ff;
-      padding: 0.6rem;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      color: black;
-      transition: all 0.2s;
-    }
+.extra-links li {
+  list-style-type: none;
+  margin: 0.5rem 0;
+}
 
-    .extra-links a:hover {
-      background-color: #0073e6;
-      color: white;
-    }
+.extra-links a {
+  display: block;
+  background-color: #ccf2ff;
+  padding: 0.6rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: black;
+  transition: all 0.2s;
+}
 
-    .footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #333;
-    }
+.extra-links a:hover {
+  background-color: #0073e6;
+  color: white;
+}
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5rem;
-      }
+.footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #333;
+}
 
-      .link-column a {
-        font-size: 0.95rem;
-        padding: 0.5rem;
-      }
-    }
-  </style>
+/* 반응형 스타일 */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .link-column a {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .link-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link-column {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+</style>
+
 </head>
 <body>
 
